@@ -1,0 +1,208 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Navbar */
+nav {
+  background-color: #1a1a2e;
+  padding: 16px 32px;
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #c9a84c;
+}
+
+/* Hero Section */
+section {
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #1a1a2e;
+  color: white;
+}
+
+section h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+  color: #c9a84c;
+}
+
+section p {
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+section a {
+  background-color: #c9a84c;
+  color: #1a1a2e;
+  padding: 14px 32px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+/* Services Section */
+.services {
+  display: flex;
+  gap: 24px;
+  padding: 60px 40px;
+  background-color: #f5f5f5;
+}
+
+.card {
+  flex: 1;
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card h2 {
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.card a {
+  background-color: #1a1a2e;
+  color: #c9a84c;
+  padding: 10px 24px;
+  text/* Footer */
+footer {
+  background-color: #1a1a2e;
+  color: #c9a84c;
+  text-align: center;
+  padding: 24px;
+  font-size: 14px;
+}-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+/* About Block */
+.about-block {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 32px;
+  line-height: 1.9;
+}
+
+.about-block h2 {
+  color: #1a1a2e;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.about-block p {
+  color: #444;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+/* Contact Form */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1a1a2e;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
+}
+
+.form-group textarea {
+  height: 140px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background-color: #1a1a2e;
+  color: #c9a84c;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* Form Page */
+.form-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f5f5f5;
+}
+
+.form-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 480px;
+}
+
+.form-box h2 {
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  font-size: 26px;
+}
+
+.form-box p {
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.form-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.form-link a {
+  color: #c9a84c;
+  font-weight: bold;
+  text-decoration: none;
+}
+/* Select Dropdown */
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
+  background-color: white;
+}

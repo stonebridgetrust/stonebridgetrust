@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stonebridge Trust | Your Trusted Financial Partner</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --american-red: #B22234;
+      --american-red-dark: #8B1A1A;
+      --american-white: #FFFFFF;
+      --american-blue: #3C3B6E;
+      --american-blue-dark: #1A1A4E;
+      --american-blue-light: #5B5B8A;
+      --gold: #D4AF37;
+      --light-gray: #f0f0f0;
+      --medium-gray: #6c757d;
+    }
+
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: var(--american-white);
+      color: var(--american-blue-dark);
+    }
+
+    /* MODERN NAVIGATION */
+    nav {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--american-white);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 0.5rem; 
+      list-style: none; 
+      align-items: center; 
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { 
+      background: rgba(255,255,255,0.12);
+      color: var(--gold);
+    }
+    .nav-links .btn-nav {
+      background: var(--american-red);
+      color: white;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+    }
+    .nav-links .btn-nav:hover { 
+      background: var(--american-red-dark);
+      color: white;
+    }
+    .nav-links .btn-logout {
+      background: rgba(198, 40, 40, 0.8);
+    }
+    .nav-links .btn-logout:hover {
+      background: #c62828;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 85vh;
+      background: 
+        linear-gradient(135deg, rgba(60,59,110,0.92) 0%, rgba(26,26,78,0.85) 100%),
+        url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1600') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 4rem 3rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--american-red), var(--american-white), var(--american-blue));
+    }
+    .hero-content { 
+      max-width: 650px; 
+      position: relative;
+      z-index: 2;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--american-white);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { 
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #c0c0c0;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-red { 
+      background: var(--american-red); 
+      color: white; 
+      box-shadow: 0 4px 12px rgba(178,34,52,0.3);
+    }
+    .btn-red:hover { 
+      background: var(--american-red-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline { 
+      border: 2px solid rgba(255,255,255,0.3); 
+      color: white; 
+      background: transparent; 
+    }
+    .btn-outline:hover { 
+      border-color: var(--gold); 
+      color: var(--gold);
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: linear-gradient(135deg, var(--american-blue-dark) 0%, var(--american-blue) 100%);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 3px solid var(--gold);
+      border-bottom: 3px solid var(--gold);
+    }
+    .stat {
+      padding: 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label { 
+      font-size: 0.8rem; 
+      color: #c0c0c0; 
+      text-transform: uppercase; 
+      letter-spacing: 0.08em; 
+      margin-top: 0.5rem; 
+      font-weight: 500;
+    }
+
+    /* SERVICES SECTION */
+    .services-section { padding: 5rem 3rem; background: var(--american-white); }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-label { 
+      font-size: 0.75rem; 
+      letter-spacing: 0.15em; 
+      text-transform: uppercase; 
+      color: var(--american-red); 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 0.75rem; 
+    }
+    .section-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2.2rem; 
+      color: var(--american-blue-dark); 
+    }
+    .section-sub { 
+      color: var(--medium-gray); 
+      font-size: 1rem; 
+      margin-top: 0.75rem; 
+      max-width: 600px; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .service-card {
+      background: var(--american-white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .service-card:hover { 
+      box-shadow: 0 20px 35px rgba(60,59,110,0.15); 
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+    .service-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .service-card-body { padding: 1.75rem; }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-card-body h3 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 1.3rem; 
+      color: var(--american-blue-dark); 
+      margin-bottom: 0.75rem; 
+    }
+    .service-card-body p { 
+      font-size: 0.9rem; 
+      color: var(--medium-gray); 
+      line-height: 1.6; 
+      margin-bottom: 1.25rem; 
+    }
+    .service-link { 
+      font-size: 0.85rem; 
+      font-weight: 600; 
+      color: var(--american-red); 
+      text-decoration: none; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 0.4rem;
+    }
+    .service-link:hover { color: var(--gold); gap: 0.6rem; }
+
+    /* WHY US */
+    .why-section {
+      padding: 5rem 3rem;
+      background: linear-gradient(135deg, #f8f9fa 0%, #f0f0f0 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .why-img-wrap { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 35px rgba(0,0,0,0.1); }
+    .why-img-wrap img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      display: block;
+    }
+    .why-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: linear-gradient(135deg, var(--american-red), var(--american-red-dark));
+      color: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .why-badge strong { font-size: 2rem; display: block; font-family: 'Playfair Display', serif; }
+    .why-badge span { font-size: 0.75rem; opacity: 0.9; }
+    .why-text .section-label, .why-text .section-title, .why-text .section-sub { text-align: left; }
+    .why-list { list-style: none; margin: 1.5rem 0 2rem; }
+    .why-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    .why-list li .check {
+      width: 24px;
+      height: 24px;
+      background: var(--american-red);
+      color: white;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5rem 3rem; background: var(--american-white); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(60,59,110,0.1);
+      border-color: var(--gold);
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-text { font-size: 0.9rem; color: #555; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+    .author-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--american-blue), var(--american-blue-dark));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .author-name { font-weight: 700; color: var(--american-blue-dark); font-size: 0.9rem; }
+    .author-role { font-size: 0.75rem; color: var(--medium-gray); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--american-blue-dark) 0%, var(--american-blue) 100%);
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border-top: 4px solid var(--american-red);
+      border-bottom: 4px solid var(--american-red);
+    }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 0.75rem; }
+    .cta-banner p { color: #c0c0c0; font-size: 1rem; max-width: 500px; }
+    .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      background: var(--american-blue-dark);
+      color: #b0b0b0;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.3rem; display: inline-block; margin-bottom: 1rem; color: white; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.6; max-width: 260px; }
+    .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 1rem; font-weight: 600; }
+    .footer-col a { display: block; color: #b0b0b0; text-decoration: none; font-size: 0.85rem; margin-bottom: 0.6rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { 
+      background: #0a0a2a; 
+      text-align: center; 
+      padding: 1rem; 
+      font-size: 0.75rem; 
+      color: #888; 
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .hero { padding: 3rem 1.5rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .services-grid, .testimonials-grid, .why-section { grid-template-columns: 1fr; }
+      .why-section { padding: 3rem 1.5rem; gap: 2rem; }
+      .why-badge { display: none; }
+      .cta-banner { flex-direction: column; text-align: center; padding: 3rem 1.5rem; }
+      footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+      .services-section, .testimonials { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR - Changes based on login status -->
+  <nav>
+    <a href="index.html" class="nav-logo">Stonebridge <span>Trust</span></a>
+    <ul class="nav-links" id="navLinks">
+      <!-- Links will be injected by JavaScript based on login status -->
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">✦ PROUDLY SERVING AMERICA SINCE 2005</span>
+      <h1>Banking Built on <span>Freedom & Trust</span></h1>
+      <p>Stonebridge Trust delivers secure banking, housing solutions, and loans with American values — transparent, reliable, and built for you.</p>
+      <div class="hero-btns" id="heroButtons">
+        <!-- Buttons will be injected by JavaScript based on login status -->
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num">$2.8B+</span><span class="stat-label">Assets Protected</span></div>
+    <div class="stat"><span class="stat-num">105K+</span><span class="stat-label">Customers Nationwide</span></div>
+    <div class="stat"><span class="stat-num">99%</span><span class="stat-label">Client Retention</span></div>
+    <div class="stat"><span class="stat-num">50 States</span><span class="stat-label">Nationwide Reach</span></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="section-header">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Financial Freedom Starts Here</h2>
+      <p class="section-sub">From everyday banking to home loans — all designed for the American dream.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600" alt="Banking" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-icon">🏦</div>
+          <h3>Personal Banking</h3>
+          <p>Secure checking, high-yield savings, and money management tools — all with zero hidden fees.</p>
+          <a href="banking.html" class="service-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600" alt="Housing" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-icon">🏠</div>
+          <h3>Home Mortgages</h3>
+          <p>Low-rate mortgages, FHA loans, and first-time buyer programs to help you own your piece of America.</p>
+          <a href="housing.html" class="service-link">View Rates →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" alt="Loans" class="service-card-img">
+        <div class="service-card-body">
+          <div class="service-icon">💰</div>
+          <h3>Personal & Business Loans</h3>
+          <p>Fast approvals, competitive rates, and flexible terms for whatever life brings your way.</p>
+          <a href="loans.html" class="service-link">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="why-img-wrap">
+      <img src="https://images.unsplash.com/photo-1556741533-6e6a4bd8b49c?w=800" alt="Financial advisors">
+      <div class="why-badge">
+        <strong>20+</strong>
+        <span>Years of Trust</span>
+      </div>
+    </div>
+    <div class="why-text">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Built on American Values</h2>
+      <p class="section-sub">We believe in transparency, hard work, and putting customers first — because that's what America stands for.</p>
+      <ul class="why-list">
+        <li><span class="check">✓</span> FDIC-insured deposits — your money is safe</li>
+        <li><span class="check">✓</span> 100% U.S.-based customer support</li>
+        <li><span class="check">✓</span> No hidden fees — total transparency</li>
+        <li><span class="check">✓</span> Mobile banking with real-time alerts</li>
+        <li><span class="check">✓</span> Veterans & first responder discounts</li>
+      </ul>
+      <a href="register.html" class="btn btn-red" id="ctaButton">Join Today →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <span class="section-label">Customer Stories</span>
+      <h2 class="section-title">Trusted by Americans Everywhere</h2>
+      <p class="section-sub">Real stories from real customers across the United States.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Stonebridge Trust helped me buy my first home with a mortgage I could actually afford. The process was smooth and transparent."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JD</div>
+          <div><div class="author-name">James Davis</div><div class="author-role">Texas</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I've banked with them for 8 years. Competitive rates, great app, and customer service that actually picks up the phone."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SM</div>
+          <div><div class="author-name">Sarah Miller</div><div class="author-role">Florida</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Their business loan got my company through a tough quarter. Fair terms, quick approval, and they really care about small business."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MW</div>
+          <div><div class="author-name">Michael Williams</div><div class="author-role">Ohio</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div>
+      <h2>Ready to Build Your American Dream?</h2>
+      <p>Join over 100,000 Americans who trust Stonebridge Trust with their financial future.</p>
+    </div>
+    <div class="cta-btns" id="ctaButtons">
+      <!-- Buttons will be injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Stonebridge <span>Trust</span></a>
+      <p>Your trusted American financial partner since 2005. Banking, housing, and loans built on integrity.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="banking.html">Banking</a>
+      <a href="housing.html">Housing</a>
+      <a href="loans.html">Loans</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="register.html" id="footerRegisterLink">Register</a>
+      <a href="login.html" id="footerLoginLink">Login</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2025 Stonebridge Trust. NMLS #123456 | Member FDIC | Equal Housing Lender 🇺🇸</p>
+  </div>
+
+  <script>
+    // Check if user is logged in
+    const loggedInUser = JSON.parse(localStorage.getItem('user'));
+
+    // Navigation links for different states
+    const publicNavLinks = `
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="banking.html">Banking</a></li>
+      <li><a href="housing.html">Housing</a></li>
+      <li><a href="loans.html">Loans</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html" class="btn-nav">Login</a></li>
+    `;
+
+    const loggedInNavLinks = `
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="banking.html">Banking</a></li>
+      <li><a href="housing.html">Housing</a></li>
+      <li><a href="loans.html">Loans</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="#" onclick="logout()" class="btn-nav btn-logout">Logout</a></li>
+    `;
+
+    // Hero buttons
+    const publicHeroButtons = `
+      <a href="register.html" class="btn btn-red">Open an Account →</a>
+      <a href="about.html" class="btn btn-outline">Learn More</a>
+    `;
+
+    const loggedInHeroButtons = `
+      <a href="dashboard.html" class="btn btn-red">Go to Dashboard →</a>
+      <a href="about.html" class="btn btn-outline">Learn More</a>
+    `;
+
+    // CTA buttons
+    const publicCtaButtons = `
+      <a href="register.html" class="btn btn-red">Open an Account</a>
+      <a href="contact.html" class="btn btn-outline">Talk to an Advisor</a>
+    `;
+
+    const loggedInCtaButtons = `
+      <a href="dashboard.html" class="btn btn-red">Go to Dashboard</a>
+      <a href="contact.html" class="btn btn-outline">Talk to an Advisor</a>
+    `;
+
+    // Apply the correct navigation and buttons based on login status
+    if (loggedInUser) {
+      document.getElementById('navLinks').innerHTML = loggedInNavLinks;
+      document.getElementById('heroButtons').innerHTML = loggedInHeroButtons;
+      document.getElementById('ctaButtons').innerHTML = loggedInCtaButtons;
+      
+      // Update footer links
+      const footerRegister = document.getElementById('footerRegisterLink');
+      const footerLogin = document.getElementById('footerLoginLink');
+      if (footerRegister) footerRegister.href = 'dashboard.html';
+      if (footerLogin) footerLogin.href = 'dashboard.html';
+      if (footerRegister) footerRegister.textContent = 'Dashboard';
+      if (footerLogin) footerLogin.textContent = 'Dashboard';
+      
+      // Update CTA button in why section
+      const ctaButton = document.getElementById('ctaButton');
+      if (ctaButton) {
+        ctaButton.href = 'dashboard.html';
+        ctaButton.textContent = 'Go to Dashboard →';
+      }
+    } else {
+      document.getElementById('navLinks').innerHTML = publicNavLinks;
+      document.getElementById('heroButtons').innerHTML = publicHeroButtons;
+      document.getElementById('ctaButtons').innerHTML = publicCtaButtons;
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

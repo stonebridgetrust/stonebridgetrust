@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Stonebridge Trust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --american-red: #B22234;
+      --american-red-dark: #8B1A1A;
+      --american-white: #FFFFFF;
+      --american-blue: #3C3B6E;
+      --american-blue-dark: #1A1A4E;
+      --gold: #D4AF37;
+      --medium-gray: #6c757d;
+    }
+
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: var(--american-white);
+      color: var(--american-blue-dark);
+    }
+
+    nav {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--american-white);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 0.5rem; 
+      list-style: none; 
+      align-items: center; 
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { 
+      background: rgba(255,255,255,0.12);
+      color: var(--gold);
+    }
+    .btn-nav {
+      background: var(--american-red);
+      color: white;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+    }
+    .logout-btn {
+      background: rgba(198, 40, 40, 0.8);
+    }
+    .logout-btn:hover {
+      background: #c62828;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      padding: 5rem 3rem;
+      text-align: center;
+      color: white;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .about-block {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .about-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--american-blue-dark);
+      margin-bottom: 1.5rem;
+    }
+    .about-block p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.2rem;
+    }
+
+    .services {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--american-red);
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    footer {
+      background: var(--american-blue-dark);
+      color: #b0b0b0;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .services { grid-template-columns: 1fr; }
+      .page-hero { padding: 3rem 1.5rem; }
+      .page-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Stonebridge <span>Trust</span></a>
+    <ul class="nav-links" id="navLinks"></ul>
+  </nav>
+
+  <section class="page-hero">
+    <h1>About Stonebridge Trust</h1>
+    <p>Built on integrity. Driven by purpose. Committed to you.</p>
+  </section>
+
+  <div class="about-block">
+    <h2>Our Story</h2>
+    <p>Stonebridge Trust was founded with a single, powerful conviction — that every person, regardless of their background or income level, deserves access to financial services that are honest, reliable and built around their real needs.</p>
+    <p>We started as a small community lending institution, serving families in underserved areas who had been turned away by traditional banks. Over the years, through trust earned one customer at a time, we grew. We expanded our services to include personal and business banking, housing finance, and flexible loan products — all under one roof.</p>
+    <p>Today, Stonebridge Trust stands as a full-service financial institution with a reputation for transparency, fairness and genuine care for the people we serve. We are not just a bank. We are a partner in your financial journey.</p>
+  </div>
+
+  <div class="services">
+    <div class="card">
+      <h2>Our Mission</h2>
+      <p>To break down financial barriers and provide every individual — regardless of their background, status or location — with access to world-class banking, housing and loan services. We believe financial freedom is not a privilege. It is a right.</p>
+    </div>
+    <div class="card">
+      <h2>Our Vision</h2>
+      <p>To become the most trusted and most human financial institution. We envision a future where every family owns a home, every entrepreneur has access to capital, and every individual has a bank they can truly rely on.</p>
+    </div>
+    <div class="card">
+      <h2>Our Values</h2>
+      <p>Integrity — we say what we mean. Transparency — no hidden fees. Excellence — highest standards. Compassion — because behind every account is a human being with hopes and dreams.</p>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <h2>Why Customers Choose Stonebridge Trust</h2>
+    <p>In a world full of financial institutions that treat customers like numbers, Stonebridge Trust is different. We take the time to understand your situation. Our loan officers sit with you. Our housing advisors walk you through every step.</p>
+    <p>We have helped thousands of families secure their first home. We have given entrepreneurs the capital they needed to launch and grow. When you choose Stonebridge Trust, you are joining a community of people who believe that with the right support, anyone can build something lasting.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Stonebridge Trust. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const loggedInUser = JSON.parse(localStorage.getItem('user'));
+    const navLinks = document.getElementById('navLinks');
+
+    if (loggedInUser) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html">Housing</a></li>
+        <li><a href="loans.html">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html">Housing</a></li>
+        <li><a href="loans.html">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html" class="btn-nav">Login</a></li>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

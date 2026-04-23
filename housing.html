@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Housing | Stonebridge Trust</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --american-red: #B22234;
+      --american-red-dark: #8B1A1A;
+      --american-white: #FFFFFF;
+      --american-blue: #3C3B6E;
+      --american-blue-dark: #1A1A4E;
+      --gold: #D4AF37;
+      --medium-gray: #6c757d;
+      --light-gray: #f5f5f5;
+    }
+
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: var(--american-white);
+      color: var(--american-blue-dark);
+    }
+
+    nav {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--american-white);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 0.5rem; 
+      list-style: none; 
+      align-items: center; 
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { 
+      background: rgba(255,255,255,0.12);
+      color: var(--gold);
+    }
+    .btn-nav {
+      background: var(--american-red);
+      color: white;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+    }
+    .logout-btn {
+      background: rgba(198, 40, 40, 0.8);
+    }
+    .logout-btn:hover {
+      background: #c62828;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      padding: 5rem 3rem;
+      position: relative;
+      color: white;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--american-red), var(--gold), var(--american-blue));
+    }
+    .hero-label { 
+      font-size: 0.75rem; 
+      letter-spacing: 0.15em; 
+      text-transform: uppercase; 
+      color: var(--gold); 
+      margin-bottom: 1rem; 
+      font-weight: 600; 
+    }
+    .hero h1 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: clamp(2.2rem, 5vw, 3.5rem); 
+      font-weight: 700; 
+      line-height: 1.15; 
+      max-width: 620px; 
+      margin-bottom: 1.5rem; 
+    }
+    .hero p { 
+      font-size: 1.1rem; 
+      color: #c0c0c0; 
+      max-width: 520px; 
+      line-height: 1.7; 
+      margin-bottom: 2rem; 
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-red { 
+      background: var(--american-red); 
+      color: white; 
+    }
+    .btn-red:hover { 
+      background: var(--american-red-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline { 
+      border: 2px solid var(--gold); 
+      color: var(--gold); 
+      background: transparent; 
+    }
+    .btn-outline:hover { 
+      background: var(--gold); 
+      color: var(--american-blue-dark);
+    }
+
+    .listings-section { padding: 5rem 3rem; background: var(--light-gray); }
+    .section-title { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2rem; 
+      color: var(--american-blue-dark); 
+      margin-bottom: 0.5rem; 
+    }
+    .section-sub { 
+      color: var(--medium-gray); 
+      font-size: 1rem; 
+      margin-bottom: 3rem; 
+      max-width: 500px; 
+    }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .listing-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .listing-card:hover {
+      box-shadow: 0 20px 35px rgba(60,59,110,0.15);
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+    .listing-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .listing-badge {
+      display: inline-block;
+      background: var(--american-red);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .listing-body { padding: 1.5rem; }
+    .listing-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--american-blue-dark);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .listing-address {
+      font-size: 0.85rem;
+      color: var(--medium-gray);
+      margin-bottom: 1rem;
+    }
+    .listing-specs {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--american-blue-dark);
+      border-top: 1px solid #e0e0e0;
+      padding-top: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .listing-card .btn-red {
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      display: block;
+    }
+
+    .cards-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 1.5rem; 
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { 
+      box-shadow: 0 12px 40px rgba(60,59,110,0.12); 
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .card::before { 
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 4px; 
+      height: 100%; 
+      background: var(--american-red); 
+    }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 1.2rem; 
+      margin-bottom: 0.75rem; 
+      color: var(--american-blue-dark); 
+    }
+    .card p { 
+      font-size: 0.9rem; 
+      color: var(--medium-gray); 
+      line-height: 1.6; 
+      margin-bottom: 1.5rem; 
+    }
+    .card-rate { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      color: var(--american-red); 
+      font-family: 'Playfair Display', serif; 
+    }
+    .card-rate span { 
+      font-size: 0.8rem; 
+      color: var(--medium-gray); 
+      font-weight: 400; 
+    }
+    .card-link { 
+      display: inline-block; 
+      margin-top: 1.25rem; 
+      font-size: 0.85rem; 
+      font-weight: 600; 
+      color: var(--american-red); 
+      text-decoration: none; 
+    }
+    .card-link:hover { color: var(--gold); text-decoration: underline; }
+
+    .process { 
+      background: linear-gradient(135deg, var(--american-blue-dark) 0%, var(--american-blue) 100%); 
+      padding: 5rem 3rem; 
+      color: white; 
+    }
+    .process .section-title { color: white; }
+    .process .section-sub { color: #c0c0c0; }
+    .steps { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 2rem; 
+      margin-top: 3rem; 
+    }
+    .step { 
+      text-align: center; 
+      padding: 2rem 1.5rem; 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 16px; 
+      border: 1px solid rgba(212,175,55,0.2); 
+    }
+    .step-num { 
+      width: 48px; 
+      height: 48px; 
+      border-radius: 50%; 
+      background: var(--american-red); 
+      color: white; 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin: 0 auto 1.25rem; 
+      font-family: 'Playfair Display', serif; 
+    }
+    .step h4 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 1rem; 
+      margin-bottom: 0.75rem; 
+      color: var(--gold); 
+    }
+    .step p { 
+      font-size: 0.85rem; 
+      color: #c0c0c0; 
+      line-height: 1.6; 
+    }
+
+    .cta { 
+      background: var(--american-red); 
+      padding: 4rem 3rem; 
+      text-align: center; 
+      color: white; 
+    }
+    .cta h2 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2rem; 
+      margin-bottom: 1rem; 
+    }
+    .cta p { 
+      font-size: 1rem; 
+      margin-bottom: 2rem; 
+      opacity: 0.9; 
+    }
+    .btn-white { 
+      background: white; 
+      color: var(--american-red); 
+      padding: 0.9rem 2.5rem; 
+      border-radius: 50px; 
+      font-weight: 700; 
+      font-size: 0.9rem; 
+      text-decoration: none; 
+      display: inline-block; 
+      transition: all 0.2s; 
+    }
+    .btn-white:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    footer { 
+      background: var(--american-blue-dark); 
+      color: #b0b0b0; 
+      text-align: center; 
+      padding: 2rem; 
+      font-size: 0.85rem; 
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .hero, .listings-section, .process, .cta { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Stonebridge <span>Trust</span></a>
+    <ul class="nav-links" id="navLinks"></ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-label">🏠 Property Listings</p>
+    <h1>Find Your Perfect Home with Stonebridge Trust</h1>
+    <p>Browse our exclusive property listings and financing options — all in one place.</p>
+    <div class="hero-buttons">
+      <a href="contact.html" class="btn btn-red">Get Pre-Approved →</a>
+      <a href="#listings" class="btn btn-outline">View Listings</a>
+    </div>
+  </section>
+
+  <section class="listings-section" id="listings">
+    <h2 class="section-title">Available Properties</h2>
+    <p class="section-sub">Explore homes currently available through Stonebridge Trust financing programs.</p>
+
+    <div class="listings-grid">
+      <div class="listing-card">
+        <img src="images/house.jpg.jpeg" alt="Property 1" class="listing-img">
+        <div class="listing-body">
+          <span class="listing-badge">For Sale</span>
+          <div class="listing-price">$245,000</div>
+          <div class="listing-address">📍 14 Maplewood Drive, Springfield</div>
+          <div class="listing-specs">
+            <span>🛏 3 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,450 sqft</span>
+          </div>
+          <a href="contact.html" class="btn btn-red">Enquire Now →</a>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <img src="images/house2.jpg.jpeg" alt="Property 2" class="listing-img">
+        <div class="listing-body">
+          <span class="listing-badge">For Sale</span>
+          <div class="listing-price">$189,500</div>
+          <div class="listing-address">📍 7 Birchwood Close, Riverside</div>
+          <div class="listing-specs">
+            <span>🛏 2 Beds</span>
+            <span>🚿 1 Bath</span>
+            <span>📐 1,100 sqft</span>
+          </div>
+          <a href="contact.html" class="btn btn-red">Enquire Now →</a>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <img src="images/home.jpg.jpeg" alt="Property 3" class="listing-img">
+        <div class="listing-body">
+          <span class="listing-badge">New Listing</span>
+          <div class="listing-price">$320,000</div>
+          <div class="listing-address">📍 3 Stonegate Avenue, Lakewood</div>
+          <div class="listing-specs">
+            <span>🛏 4 Beds</span>
+            <span>🚿 3 Baths</span>
+            <span>📐 2,100 sqft</span>
+          </div>
+          <a href="contact.html" class="btn btn-red">Enquire Now →</a>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <img src="images/home1.jpg.jpeg" alt="Property 4" class="listing-img">
+        <div class="listing-body">
+          <span class="listing-badge">For Sale</span>
+          <div class="listing-price">$275,000</div>
+          <div class="listing-address">📍 22 Elmwood Street, Greenville</div>
+          <div class="listing-specs">
+            <span>🛏 3 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,750 sqft</span>
+          </div>
+          <a href="contact.html" class="btn btn-red">Enquire Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="listings-section" style="background: white;">
+    <h2 class="section-title">Mortgage & Housing Loans</h2>
+    <p class="section-sub">Compare our most popular home financing options.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Fixed-Rate Mortgage</h3>
+        <p>Lock in your rate for the life of your loan. Ideal for predictable monthly payments.</p>
+        <div class="card-rate">6.25% <span>APR · 30-year</span></div>
+        <a href="contact.html" class="card-link">Apply Now →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Adjustable-Rate Mortgage</h3>
+        <p>Start with a lower rate that adjusts periodically. Great if you plan to sell or refinance.</p>
+        <div class="card-rate">5.50% <span>APR · 5/1 ARM</span></div>
+        <a href="contact.html" class="card-link">Apply Now →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌟</div>
+        <h3>First-Time Buyer Program</h3>
+        <p>Special down payment assistance and lower qualification thresholds for first-time buyers.</p>
+        <div class="card-rate">6.00% <span>APR · Low down payment</span></div>
+        <a href="contact.html" class="card-link">Apply Now →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Refinance</h3>
+        <p>Lower your rate, reduce your term, or tap into your home's equity with easy refinancing.</p>
+        <div class="card-rate">5.99% <span>APR · Cash-out available</span></div>
+        <a href="contact.html" class="card-link">Apply Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Four simple steps from application to getting your keys.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Apply Online</h4>
+        <p>Complete your mortgage application in under 20 minutes from any device.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Get Pre-Approved</h4>
+        <p>Receive your pre-approval letter within 24 hours to shop with confidence.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Underwriting</h4>
+        <p>Our local team reviews and processes your loan quickly and transparently.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Close & Move In</h4>
+        <p>Sign your documents and get your keys. Welcome home!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Find Your Dream Home?</h2>
+    <p>Talk to one of our housing specialists today and get pre-approved fast.</p>
+    <a href="contact.html" class="btn-white">Contact Us Today →</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Stonebridge Trust. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const loggedInUser = JSON.parse(localStorage.getItem('user'));
+    const navLinks = document.getElementById('navLinks');
+
+    if (loggedInUser) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html" class="active">Housing</a></li>
+        <li><a href="loans.html">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html" class="active">Housing</a></li>
+        <li><a href="loans.html">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html" class="btn-nav">Login</a></li>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

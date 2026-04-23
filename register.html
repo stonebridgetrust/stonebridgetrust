@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Stonebridge Trust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .success-msg {
+      color: #2e7d32;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .error-msg {
+      color: #c62828;
+      background: #ffebee;
+      border: 1px solid #ef9a9a;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    #resendBtn {
+      background: none;
+      border: none;
+      color: #1565c0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+      text-decoration: underline;
+    }
+    #resendBtn:disabled {
+      color: #999;
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+    #resendTimer {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 8px;
+    }
+    /* Added missing .form-group styles */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .form-link {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .form-box {
+      max-width: 450px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .form-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 20px;
+    }
+    nav {
+      background: #0a2b3e;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer {
+      background: #0a2b3e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="loans.html">Loans</a>
+    <a href="housing.html">Housing</a>
+    <a href="contact.html">Contact</a>
+    <a href="banking.html">Banking</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+  </nav>
+
+  <!-- REGISTER FORM -->
+  <div class="form-page">
+    <div class="form-box" id="registerBox">
+
+      <!-- STEP 1 -->
+      <div id="step1">
+        <h2>Create Your Account</h2>
+        <p>Join thousands of customers who trust Stonebridge Trust with their financial future.</p>
+
+        <div class="error-msg" id="step1Error"></div>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="emailInput" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phoneInput" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+          <label>Account Type</label>
+          <select id="accountType">
+            <option>Personal Account</option>
+            <option>Business Account</option>
+            <option>Student Account</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="passwordInput" placeholder="Create a password">
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="confirmInput" placeholder="Confirm your password">
+        </div>
+
+        <button class="submit-btn" id="createBtn" onclick="sendCode()">Create Account</button>
+        <p class="form-link">Already have an account?
+          <a href="login.html">Log in here</a>
+        </p>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" style="display:none;">
+        <h2>Verify Your Email</h2>
+        <p>We sent a 6-digit code to <strong id="emailDisplay"></strong>. Enter it below to complete your registration.</p>
+
+        <div class="success-msg" id="codeSuccess">✅ A new code has been sent to your email.</div>
+        <div class="error-msg" id="step2Error"></div>
+
+        <div class="form-group">
+          <label>Verification Code</label>
+          <input
+            type="text"
+            id="verifyCode"
+            placeholder="Enter 6-digit code"
+            maxlength="6"
+            inputmode="numeric"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            onkeydown="if(event.key==='Enter') verifyAndRedirect()"
+          >
+        </div>
+
+        <button class="submit-btn" id="verifyBtn" onclick="verifyAndRedirect()">Verify &amp; Create Account</button>
+
+        <p id="resendTimer"></p>
+        <p><button id="resendBtn" onclick="resendCode()" disabled>Resend code</button></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Stonebridge Trust. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let savedData = {};
+    let resendCountdown;
+
+    function setLoading(btnId, loading, defaultText) {
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+      btn.disabled = loading;
+      btn.innerHTML = loading
+        ? `<span class="spinner"></span> Please wait...`
+        : defaultText;
+    }
+
+    function showError(elId, msg) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function hideError(elId) {
+      const el = document.getElementById(elId);
+      if (el) el.style.display = 'none';
+    }
+
+    function startResendTimer(seconds = 60) {
+      const btn = document.getElementById('resendBtn');
+      const timer = document.getElementById('resendTimer');
+      if (!btn || !timer) return;
+      
+      btn.disabled = true;
+      let remaining = seconds;
+      timer.textContent = `You can resend in ${remaining}s`;
+      
+      if (resendCountdown) clearInterval(resendCountdown);
+      
+      resendCountdown = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(resendCountdown);
+          timer.textContent = '';
+          if (btn) btn.disabled = false;
+        } else {
+          timer.textContent = `You can resend in ${remaining}s`;
+        }
+      }, 1000);
+    }
+
+    // Password strength validation
+    function isPasswordStrong(password) {
+      if (password.length < 6) return false;
+      // At least one number and one letter
+      return /[A-Za-z]/.test(password) && /[0-9]/.test(password);
+    }
+
+    async function sendCode() {
+      hideError('step1Error');
+
+      const name = document.getElementById('fullName')?.value.trim() || '';
+      const email = document.getElementById('emailInput')?.value.trim() || '';
+      const phone = document.getElementById('phoneInput')?.value.trim() || '';
+      const account_type = document.getElementById('accountType')?.value || '';
+      const password = document.getElementById('passwordInput')?.value || '';
+      const confirm = document.getElementById('confirmInput')?.value || '';
+
+      if (!name || !email || !phone || !password || !confirm) {
+        showError('step1Error', 'Please fill in all fields.');
+        return;
+      }
+      
+      if (password !== confirm) {
+        showError('step1Error', 'Passwords do not match.');
+        return;
+      }
+      
+      if (!isPasswordStrong(password)) {
+        showError('step1Error', 'Password must be at least 6 characters and contain both letters and numbers.');
+        return;
+      }
+
+      savedData = { name, email, phone, account_type, password };
+      setLoading('createBtn', true, 'Create Account');
+
+      try {
+        const response = await fetch('/send-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        // Check if response is OK (status 200-299)
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || `Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          document.getElementById('step1').style.display = 'none';
+          document.getElementById('step2').style.display = 'block';
+          document.getElementById('emailDisplay').textContent = email;
+          startResendTimer(60);
+          document.getElementById('verifyCode')?.focus();
+        } else {
+          showError('step1Error', data.message || 'Failed to send code. Please try again.');
+        }
+      } catch (err) {
+        console.error('Send code error:', err);
+        showError('step1Error', err.message || 'Network error. Please check your connection and try again.');
+      } finally {
+        setLoading('createBtn', false, 'Create Account');
+      }
+    }
+
+    async function resendCode() {
+      const successEl = document.getElementById('codeSuccess');
+      if (successEl) successEl.style.display = 'none';
+      hideError('step2Error');
+
+      try {
+        const response = await fetch('/send-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: savedData.email })
+        });
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || `Server error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        if (data.success) {
+          if (successEl) successEl.style.display = 'block';
+          startResendTimer(60);
+        } else {
+          showError('step2Error', data.message || 'Could not resend code.');
+        }
+      } catch (err) {
+        console.error('Resend code error:', err);
+        showError('step2Error', err.message || 'Network error. Please try again.');
+      }
+    }
+
+    async function verifyAndRedirect() {
+      hideError('step2Error');
+
+      const code = document.getElementById('verifyCode')?.value.trim() || '';
+
+      if (!code || code.length < 6) {
+        showError('step2Error', 'Please enter the full 6-digit code.');
+        return;
+      }
+
+      setLoading('verifyBtn', true, 'Verify & Create Account');
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...savedData, code })
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || `Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          // ✅ Only save user if data.user exists
+          if (data.user) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+          } else {
+            // Fallback: save minimal user data from registration
+            localStorage.setItem('user', JSON.stringify({
+              name: savedData.name,
+              email: savedData.email,
+              phone: savedData.phone,
+              account_type: savedData.account_type
+            }));
+          }
+          window.location.href = 'dashboard.html';
+        } else {
+          // ✅ Show error message when verification fails
+          showError('step2Error', data.message || 'Verification failed. Please check your code and try again.');
+        }
+      } catch (err) {
+        console.error('Verification error:', err);
+        showError('step2Error', err.message || 'Network error. Please check your connection and try again.');
+      } finally {
+        setLoading('verifyBtn', false, 'Verify & Create Account');
+      }
+    }
+  </script>
+
+</body>
+</html>

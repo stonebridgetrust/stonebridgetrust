@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Stonebridge Trust</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="loans.html">Loans</a>
+      <a href="housing.html">Housing</a>
+      <a href="contact.html">Contact</a>
+      <a href="banking.html">Banking</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </nav>
+
+    <!-- LOGIN FORM -->
+    <div class="form-page">
+      <div class="form-box">
+        <h2>Welcome Back</h2>
+        <p>Log in to access your Stonebridge Trust account.</p>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password">
+        </div>
+        <button class="submit-btn">Log In</button>
+        <p class="form-link">Don't have an account? 
+          <a href="register.html">Register here</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy; 2025 Stonebridge Trust. All rights reserved.</p>
+    </footer>
+    <script>
+  document.querySelector('button').addEventListener('click', async function() {
+    const inputs = document.querySelectorAll('input');
+    const email = inputs[0].value;
+    const password = inputs[1].value;
+
+    if (!email || !password) {
+      alert('Please enter your email and password.');
+      return;
+    }
+
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      localStorage.setItem('user', JSON.stringify(data.user));
+      window.location.href = 'dashboard.html';
+    } else {
+      alert(data.message);
+    }
+  });
+</script>
+  </body>
+</html>

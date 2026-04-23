@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loans - Stonebridge Trust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --american-red: #B22234;
+      --american-red-dark: #8B1A1A;
+      --american-white: #FFFFFF;
+      --american-blue: #3C3B6E;
+      --american-blue-dark: #1A1A4E;
+      --gold: #D4AF37;
+      --medium-gray: #6c757d;
+      --light-gray: #f5f5f5;
+    }
+
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: var(--american-white);
+      color: var(--american-blue-dark);
+    }
+
+    nav {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--american-white);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 0.5rem; 
+      list-style: none; 
+      align-items: center; 
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { 
+      background: rgba(255,255,255,0.12);
+      color: var(--gold);
+    }
+    .btn-nav {
+      background: var(--american-red);
+      color: white;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+    }
+    .logout-btn {
+      background: rgba(198, 40, 40, 0.8);
+    }
+    .logout-btn:hover {
+      background: #c62828;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--american-blue) 0%, var(--american-blue-dark) 100%);
+      padding: 5rem 3rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--american-red), var(--gold), var(--american-blue));
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .about-block {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .about-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--american-blue-dark);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .about-block h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--american-red);
+    }
+    .about-block p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.2rem;
+    }
+
+    .services {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(60,59,110,0.12);
+      border-color: var(--gold);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--american-red);
+    }
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--american-red);
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .card a {
+      display: inline-block;
+      background: var(--american-red);
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .card a:hover {
+      background: var(--american-red-dark);
+      transform: translateY(-2px);
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--light-gray);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .feature-item:hover {
+      transform: translateY(-4px);
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .feature-item h3 {
+      font-size: 1rem;
+      color: var(--american-blue-dark);
+      margin-bottom: 0.5rem;
+    }
+    .feature-item p {
+      font-size: 0.85rem;
+      color: var(--medium-gray);
+    }
+
+    .cta-loan {
+      background: linear-gradient(135deg, var(--american-blue-dark) 0%, var(--american-blue) 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .cta-loan h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .cta-loan p {
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-loan .btn-cta {
+      background: var(--american-red);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .cta-loan .btn-cta:hover {
+      background: var(--american-red-dark);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: var(--american-blue-dark);
+      color: #b0b0b0;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .services { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .page-hero { padding: 3rem 1.5rem; }
+      .page-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Stonebridge <span>Trust</span></a>
+    <ul class="nav-links" id="navLinks"></ul>
+  </nav>
+
+  <section class="page-hero">
+    <h1>Loan Services</h1>
+    <p>Fast, flexible and affordable loans designed around your life.</p>
+  </section>
+
+  <div class="about-block">
+    <h2>Borrowing Made Simple</h2>
+    <p>At Stonebridge Trust, we understand that life does not always wait for your savings to catch up. Whether you need funds for an emergency, a business opportunity, school fees or a major purchase — we have a loan product designed specifically for your situation.</p>
+    <p>Our loan process is straightforward, our interest rates are competitive, and our repayment plans are built around what you can actually afford. No unnecessary delays, no unreasonable demands. Just the money you need, when you need it.</p>
+  </div>
+
+  <div class="services">
+    <div class="card">
+      <h2>Personal Loan</h2>
+      <p>Need money for medical bills, home repairs, a special occasion or an unexpected expense? Our personal loans are quick to process and come with flexible repayment terms from 3 to 36 months. No collateral required for amounts up to $5,000.</p>
+      <a href="register.html">Apply Now →</a>
+    </div>
+    <div class="card">
+      <h2>Business Loan</h2>
+      <p>Ready to start or expand your business? Our business loans give entrepreneurs and small business owners access to the capital they need to grow. Borrow from $5,000 up to $100,000 with repayment plans tailored to your cash flow cycle.</p>
+      <a href="register.html">Apply Now →</a>
+    </div>
+    <div class="card">
+      <h2>Mortgage Loan</h2>
+      <p>Own your home sooner with our affordable mortgage plans. We offer low interest rates, long repayment periods of up to 20 years, and a dedicated housing advisor to guide you through every step of the process from application to key handover.</p>
+      <a href="register.html">Apply Now →</a>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <h2>How It Works</h2>
+    <p>Applying for a loan at Stonebridge Trust takes less than 10 minutes. Simply create an account, fill out your loan application form, submit your required documents and one of our loan officers will contact you within 24 hours to discuss your options.</p>
+    <p>Once approved, funds are disbursed directly to your Stonebridge Trust account or your preferred bank account — usually within 48 hours of approval. We believe that when you need money, speed matters.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">⚡</span>
+      <h3>Fast Approval</h3>
+      <p>Get a decision within 24 hours</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">💰</span>
+      <h3>Competitive Rates</h3>
+      <p>Rates as low as 5.99% APR</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">📱</span>
+      <h3>Apply Online</h3>
+      <p>100% digital application process</p>
+    </div>
+  </div>
+
+  <div class="cta-loan">
+    <h2>Ready to Apply for a Loan?</h2>
+    <p>Get started today and get the funds you need in as little as 48 hours.</p>
+    <a href="register.html" class="btn-cta">Apply Now →</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Stonebridge Trust. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const loggedInUser = JSON.parse(localStorage.getItem('user'));
+    const navLinks = document.getElementById('navLinks');
+
+    if (loggedInUser) {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html">Housing</a></li>
+        <li><a href="loans.html" class="active">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="banking.html">Banking</a></li>
+        <li><a href="housing.html">Housing</a></li>
+        <li><a href="loans.html" class="active">Loans</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html" class="btn-nav">Login</a></li>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
