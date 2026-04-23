@@ -1,4 +1,4 @@
-// server.js - Safe version with environment variables
+// server.js - Fixed for Render
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -19,13 +19,21 @@ const verificationCodes = {};
 
 const app = express();
 
-// Database connection using environment variables
+// ========== DATABASE CONNECTION - FIXED FOR RENDER ==========
+// Use DATABASE_URL if available (Render), otherwise use individual variables
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+});
+
+// Test database connection
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('❌ Database connection error:', err.message);
+  } else {
+    console.log('✅ Database connected successfully');
+    release();
+  }
 });
 
 // Middleware
@@ -52,6 +60,7 @@ app.post('/send-code', async (req, res) => {
     });
     res.json({ success: true, message: 'Verification code sent!' });
   } catch (error) {
+    console.error('Email error:', error);
     res.json({ success: false, message: 'Failed to send email.' });
   }
 });
@@ -74,6 +83,7 @@ app.post('/register', async (req, res) => {
     delete verificationCodes[email];
     res.json({ success: true, user: result.rows[0] });
   } catch (error) {
+    console.error('Register error:', error);
     res.json({ success: false, message: 'Email already exists.' });
   }
 });
@@ -92,6 +102,7 @@ app.post('/login', async (req, res) => {
       res.json({ success: false, message: 'Invalid email or password.' });
     }
   } catch (error) {
+    console.error('Login error:', error);
     res.json({ success: false, message: 'Something went wrong.' });
   }
 });
@@ -115,6 +126,7 @@ app.get('/api/user/:email', async (req, res) => {
       res.json({ success: false, message: 'User not found' });
     }
   } catch (error) {
+    console.error('Get user error:', error);
     res.json({ success: false, message: error.message });
   }
 });
@@ -133,6 +145,7 @@ app.get('/api/user-by-account/:accountNumber', async (req, res) => {
       res.json({ success: false, message: 'Account number not found' });
     }
   } catch (error) {
+    console.error('Get by account error:', error);
     res.json({ success: false, message: error.message });
   }
 });
