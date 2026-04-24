@@ -8,11 +8,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -20,11 +16,7 @@
       color: #FFFFFF;
     }
 
-    /* Dashboard Layout */
-    .dashboard-wrapper {
-      display: flex;
-      min-height: 100vh;
-    }
+    .dashboard-wrapper { display: flex; min-height: 100vh; }
 
     /* Sidebar */
     .sidebar {
@@ -35,6 +27,8 @@
       position: fixed;
       height: 100vh;
       overflow-y: auto;
+      z-index: 200;
+      transition: width 0.3s ease;
     }
 
     .sidebar-logo {
@@ -43,19 +37,10 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .sidebar-logo img {
-      height: 40px;
-      width: auto;
-    }
+    .sidebar-logo img { height: 40px; width: auto; cursor: pointer; }
 
-    .sidebar-menu {
-      list-style: none;
-    }
-
-    .sidebar-menu li {
-      margin-bottom: 0.25rem;
-    }
-
+    .sidebar-menu { list-style: none; }
+    .sidebar-menu li { margin-bottom: 0.25rem; }
     .sidebar-menu a {
       display: flex;
       align-items: center;
@@ -68,24 +53,11 @@
       font-weight: 500;
       transition: all 0.2s ease;
       cursor: pointer;
+      white-space: nowrap;
     }
-
-    .sidebar-menu a:hover {
-      background: rgba(255,255,255,0.05);
-      color: #C6A43F;
-    }
-
-    .sidebar-menu .active a {
-      background: rgba(198, 164, 63, 0.12);
-      color: #C6A43F;
-    }
-
-    .sidebar-menu .menu-divider {
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-      margin: 1rem 0;
-    }
-
+    .sidebar-menu a:hover { background: rgba(255,255,255,0.05); color: #C6A43F; }
+    .sidebar-menu .active a { background: rgba(198, 164, 63, 0.12); color: #C6A43F; }
+    .sidebar-menu .menu-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 1rem 0; }
     .sidebar-menu .menu-label {
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -94,12 +66,11 @@
       padding: 0.75rem 1rem 0.5rem;
     }
 
+    .menu-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .menu-text { overflow: hidden; transition: opacity 0.2s ease; }
+
     /* Main Content */
-    .main-content {
-      flex: 1;
-      margin-left: 280px;
-      padding: 2rem;
-    }
+    .main-content { flex: 1; margin-left: 280px; padding: 2rem; }
 
     .top-header {
       display: flex;
@@ -110,112 +81,38 @@
       gap: 1rem;
     }
 
-    .welcome-text h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
+    .welcome-text h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .welcome-text p { color: #A0A0B0; font-size: 0.85rem; }
 
-    .welcome-text p {
-      color: #A0A0B0;
-      font-size: 0.85rem;
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
+    .user-profile { display: flex; align-items: center; gap: 1rem; }
     .user-avatar {
-      width: 45px;
-      height: 45px;
+      width: 45px; height: 45px;
       background: linear-gradient(135deg, #C6A43F, #a8882c);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
     }
-
-    .user-info span {
-      font-size: 0.8rem;
-      color: #A0A0B0;
-    }
-
-    .user-info strong {
-      font-size: 0.9rem;
-    }
+    .user-info span { font-size: 0.8rem; color: #A0A0B0; }
+    .user-info strong { font-size: 0.9rem; }
 
     /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
     .stat-card {
       background: #14141E;
       border-radius: 20px;
       padding: 1.5rem;
       border: 1px solid rgba(255,255,255,0.06);
     }
-
-    .stat-card .stat-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6B6B80;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-card .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #C6A43F;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-card .stat-sub {
-      font-size: 0.7rem;
-      color: #6B6B80;
-    }
+    .stat-card .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6B6B80; margin-bottom: 0.5rem; }
+    .stat-card .stat-value { font-size: 1.5rem; font-weight: 700; color: #C6A43F; margin-bottom: 0.25rem; }
+    .stat-card .stat-sub { font-size: 0.7rem; color: #6B6B80; }
 
     /* Two Column Layout */
-    .two-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .card {
-      background: #14141E;
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-header h3 {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .card-header a {
-      color: #C6A43F;
-      text-decoration: none;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
+    .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .card { background: #14141E; border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .card-header h3 { font-size: 1rem; font-weight: 600; }
+    .card-header a { color: #C6A43F; text-decoration: none; font-size: 0.75rem; cursor: pointer; }
 
     /* Transaction List */
     .transaction-item {
@@ -225,59 +122,36 @@
       padding: 0.75rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
-    .transaction-item:last-child {
-      border-bottom: none;
-    }
-
-    .transaction-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .transaction-item:last-child { border-bottom: none; }
+    .transaction-info { display: flex; align-items: center; gap: 12px; }
     .transaction-icon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: rgba(198, 164, 63, 0.12);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 1.2rem;
     }
+    .transaction-details .transaction-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .transaction-details .transaction-date { font-size: 0.7rem; color: #6B6B80; }
+    .transaction-amount { font-weight: 600; font-size: 0.9rem; }
+    .transaction-amount.positive { color: #4CAF50; }
+    .transaction-amount.negative { color: #f44336; }
+    .transaction-amount.pending { color: #FF9800; }
 
-    .transaction-details .transaction-name {
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-
-    .transaction-details .transaction-date {
-      font-size: 0.7rem;
-      color: #6B6B80;
-    }
-
-    .transaction-amount {
+    /* Pending badge */
+    .status-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
       font-weight: 600;
-      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-left: 0.3rem;
     }
+    .status-badge.pending { background: rgba(255, 152, 0, 0.15); color: #FF9800; }
+    .status-badge.completed { background: rgba(76, 175, 80, 0.15); color: #4CAF50; }
 
-    .transaction-amount.positive {
-      color: #4CAF50;
-    }
-
-    .transaction-amount.negative {
-      color: #f44336;
-    }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-
+    .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.5rem; }
     .action-btn {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.06);
@@ -287,22 +161,9 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
-    .action-btn:hover {
-      background: rgba(198, 164, 63, 0.12);
-      border-color: rgba(198, 164, 63, 0.3);
-    }
-
-    .action-btn .action-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .action-btn .action-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
+    .action-btn:hover { background: rgba(198, 164, 63, 0.12); border-color: rgba(198, 164, 63, 0.3); }
+    .action-btn .action-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+    .action-btn .action-label { font-size: 0.75rem; font-weight: 500; }
 
     .account-stat-item {
       display: flex;
@@ -311,35 +172,21 @@
       padding: 0.75rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
-    .account-stat-item:last-child {
-      border-bottom: none;
-    }
-
-    .account-stat-label {
-      font-size: 0.8rem;
-      color: #A0A0B0;
-    }
-
-    .account-stat-value {
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
+    .account-stat-item:last-child { border-bottom: none; }
+    .account-stat-label { font-size: 0.8rem; color: #A0A0B0; }
+    .account-stat-value { font-size: 0.85rem; font-weight: 600; }
 
     /* Modal */
     .modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.8);
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
-
     .modal-content {
       background: #14141E;
       border-radius: 24px;
@@ -348,26 +195,10 @@
       width: 90%;
       border: 1px solid rgba(255,255,255,0.1);
     }
+    .modal-content h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; }
+    .modal-content p { color: #A0A0B0; font-size: 0.85rem; margin-bottom: 1.5rem; }
 
-    .modal-content h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: white;
-    }
-
-    .modal-content p {
-      color: #A0A0B0;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .transfer-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
+    .transfer-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
     .transfer-option {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.06);
@@ -377,39 +208,13 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+    .transfer-option:hover { background: rgba(198, 164, 63, 0.12); border-color: rgba(198, 164, 63, 0.3); }
+    .transfer-option .option-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+    .transfer-option .option-title { font-weight: 600; margin-bottom: 0.25rem; }
+    .transfer-option .option-desc { font-size: 0.7rem; color: #6B6B80; }
 
-    .transfer-option:hover {
-      background: rgba(198, 164, 63, 0.12);
-      border-color: rgba(198, 164, 63, 0.3);
-    }
-
-    .transfer-option .option-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .transfer-option .option-title {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .transfer-option .option-desc {
-      font-size: 0.7rem;
-      color: #6B6B80;
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 0.75rem;
-      color: #A0A0B0;
-      margin-bottom: 0.5rem;
-    }
-
+    .input-group { margin-bottom: 1rem; }
+    .input-group label { display: block; font-size: 0.75rem; color: #A0A0B0; margin-bottom: 0.5rem; }
     .input-group input, .input-group select {
       width: 100%;
       padding: 0.8rem;
@@ -419,127 +224,34 @@
       color: white;
       font-size: 0.9rem;
     }
+    .input-group input:focus, .input-group select:focus { outline: none; border-color: #C6A43F; }
 
-    .input-group input:focus, .input-group select:focus {
-      outline: none;
-      border-color: #C6A43F;
-    }
+    .transfer-type-group { margin: 0.75rem 0; }
+    .transfer-type-group label { display: inline-block; margin-right: 1rem; cursor: pointer; color: #A0A0B0; font-size: 0.8rem; }
+    .transfer-type-group input { width: auto; margin-right: 0.25rem; }
 
-    .transfer-type-group {
-      margin: 0.75rem 0;
-    }
+    .fee-info { background: rgba(255,255,255,0.05); padding: 0.5rem; border-radius: 8px; font-size: 0.75rem; margin: 0.5rem 0; color: #6B6B80; }
 
-    .transfer-type-group label {
-      display: inline-block;
-      margin-right: 1rem;
-      cursor: pointer;
-      color: #A0A0B0;
-      font-size: 0.8rem;
-    }
+    .modal-buttons { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .modal-buttons button { flex: 1; padding: 0.8rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .btn-submit { background: #C6A43F; color: #0A0A0F; border: none; }
+    .btn-submit:hover { background: #a8882c; }
+    .btn-cancel { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
+    .btn-cancel:hover { background: rgba(255,255,255,0.1); }
 
-    .transfer-type-group input {
-      width: auto;
-      margin-right: 0.25rem;
-    }
+    .progress-container { text-align: center; margin: 2rem 0; }
+    .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin: 1rem 0; }
+    .progress-fill { width: 100%; height: 100%; background: #C6A43F; border-radius: 3px; animation: progress 2s ease; }
+    @keyframes progress { from { width: 0%; } to { width: 100%; } }
 
-    .fee-info {
-      background: rgba(255,255,255,0.05);
-      padding: 0.5rem;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      margin: 0.5rem 0;
-      color: #6B6B80;
-    }
-
-    .modal-buttons {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .modal-buttons button {
-      flex: 1;
-      padding: 0.8rem;
-      border-radius: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn-submit {
-      background: #C6A43F;
-      color: #0A0A0F;
-      border: none;
-    }
-
-    .btn-submit:hover {
-      background: #a8882c;
-    }
-
-    .btn-cancel {
-      background: rgba(255,255,255,0.05);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn-cancel:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .progress-container {
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin: 1rem 0;
-    }
-
-    .progress-fill {
-      width: 100%;
-      height: 100%;
-      background: #C6A43F;
-      border-radius: 3px;
-      animation: progress 2s ease;
-    }
-
-    @keyframes progress {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
-
-    .transfer-details {
-      background: rgba(255,255,255,0.03);
-      border-radius: 16px;
-      padding: 1rem;
-      margin: 1rem 0;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-    }
-
-    .info-label {
-      font-size: 0.75rem;
-      color: #6B6B80;
-    }
-
-    .info-value {
-      font-size: 0.85rem;
-    }
+    .transfer-details { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1rem; margin: 1rem 0; }
+    .info-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; }
+    .info-label { font-size: 0.75rem; color: #6B6B80; }
+    .info-value { font-size: 0.85rem; }
 
     .message-toast {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 20px; right: 20px;
       background: #C6A43F;
       color: #0A0A0F;
       padding: 12px 20px;
@@ -549,43 +261,83 @@
       font-weight: 500;
     }
 
-    footer {
-      margin-top: 2rem;
-      text-align: center;
-      padding: 1rem;
-      color: #6B6B80;
-      font-size: 0.7rem;
-    }
+    footer { margin-top: 2rem; text-align: center; padding: 1rem; color: #6B6B80; font-size: 0.7rem; }
 
+    /* ===== MOBILE SIDEBAR FIX ===== */
     @media (max-width: 1000px) {
       .sidebar {
-        width: 80px;
-        padding: 1rem;
-      }
-      .sidebar .sidebar-logo img {
-        width: 40px;
+        width: 100%;
         height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        padding: 0.5rem 0.25rem;
+        border-right: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        overflow-x: auto;
+        overflow-y: hidden;
       }
-      .sidebar-menu a span:not(.emoji) {
-        display: none;
+
+      .sidebar-logo { display: none; }
+
+      .sidebar-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
       }
+      .sidebar-menu::-webkit-scrollbar { display: none; }
+
+      .sidebar-menu li { margin-bottom: 0; flex-shrink: 0; }
+      .sidebar-menu .menu-label { display: none; }
+      .sidebar-menu .menu-divider { display: none; }
+
       .sidebar-menu a {
-        justify-content: center;
-        padding: 0.75rem;
+        flex-direction: column;
+        gap: 4px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.65rem;
+        border-radius: 10px;
+        text-align: center;
+        min-width: 60px;
       }
-      .sidebar-menu .menu-label {
-        display: none;
-      }
+
+      .menu-icon { font-size: 1.3rem; }
+      .menu-text { font-size: 0.6rem; white-space: nowrap; }
+
       .main-content {
-        margin-left: 80px;
+        margin-left: 0;
+        padding: 1rem;
+        padding-bottom: 90px;
       }
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+      /* Mobile top logo bar */
+      .mobile-top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        background: #111118;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        margin: -1rem -1rem 1rem -1rem;
       }
-      .two-columns {
-        grid-template-columns: 1fr;
-      }
+
+      .mobile-top-bar img { height: 32px; cursor: pointer; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .two-columns { grid-template-columns: 1fr; }
+      .stat-card .stat-value { font-size: 1.2rem; }
     }
+
+    /* Hide mobile top bar on desktop */
+    .mobile-top-bar { display: none; }
   </style>
 </head>
 <body>
@@ -594,30 +346,57 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-logo">
-      <img src="images/logo.png.jpg" alt="Stonebridge Trust">
+      <img src="images/logo.png.jpg" alt="Stonebridge Trust" onclick="window.location.href='index.html'">
     </div>
     <ul class="sidebar-menu">
       <li class="menu-label">MAIN MENU</li>
-      <li class="active"><a href="dashboard.html">📊 Dashboard</a></li>
-      <li><a href="#">📋 Transactions</a></li>
-      <li><a href="#">💳 Cards</a></li>
+      <li class="active">
+        <a href="dashboard.html"><span class="menu-icon">📊</span><span class="menu-text">Dashboard</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="menu-icon">📋</span><span class="menu-text">Transactions</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="menu-icon">💳</span><span class="menu-text">Cards</span></a>
+      </li>
       <div class="menu-divider"></div>
       <li class="menu-label">TRANSFERS</li>
-      <li><a href="#" onclick="openTransferModalFromSidebar('local')">🏦 Local Transfer</a></li>
-      <li><a href="#" onclick="openTransferModalFromSidebar('international')">🌍 International</a></li>
-      <li><a href="#" onclick="openModal('deposit')">💰 Deposit</a></li>
-      <li><a href="#">🔄 Currency Swap</a></li>
+      <li>
+        <a href="#" onclick="openTransferModalFromSidebar('local')"><span class="menu-icon">🏦</span><span class="menu-text">Local</span></a>
+      </li>
+      <li>
+        <a href="#" onclick="openTransferModalFromSidebar('international')"><span class="menu-icon">🌍</span><span class="menu-text">International</span></a>
+      </li>
+      <li>
+        <a href="#" onclick="openModal('deposit')"><span class="menu-icon">💰</span><span class="menu-text">Deposit</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="menu-icon">🔄</span><span class="menu-text">Swap</span></a>
+      </li>
       <div class="menu-divider"></div>
       <li class="menu-label">SERVICES</li>
-      <li><a href="loans.html">📑 Loans</a></li>
-      <li><a href="housing.html">🏠 Housing</a></li>
+      <li>
+        <a href="loans.html"><span class="menu-icon">📑</span><span class="menu-text">Loans</span></a>
+      </li>
+      <li>
+        <a href="housing.html"><span class="menu-icon">🏠</span><span class="menu-text">Housing</span></a>
+      </li>
       <div class="menu-divider"></div>
-      <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+      <li>
+        <a href="#" onclick="logout()"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a>
+      </li>
     </ul>
   </div>
 
   <!-- Main Content -->
   <div class="main-content">
+
+    <!-- Mobile Top Bar (visible only on mobile) -->
+    <div class="mobile-top-bar">
+      <img src="images/logo.png.jpg" alt="Stonebridge Trust" onclick="window.location.href='index.html'">
+      <div class="user-avatar" id="userAvatarMobile">U</div>
+    </div>
+
     <div class="top-header">
       <div class="welcome-text">
         <h1>Welcome back, <span id="username">User</span></h1>
@@ -658,7 +437,6 @@
 
     <!-- Two Column Layout -->
     <div class="two-columns">
-      <!-- Recent Transactions -->
       <div class="card">
         <div class="card-header">
           <h3>Recent Transactions</h3>
@@ -669,12 +447,9 @@
         </div>
       </div>
 
-      <!-- Quick Actions & Account Info -->
       <div>
         <div class="card" style="margin-bottom: 1.5rem;">
-          <div class="card-header">
-            <h3>Quick Actions</h3>
-          </div>
+          <div class="card-header"><h3>Quick Actions</h3></div>
           <div class="quick-actions">
             <div class="action-btn" onclick="openTransferModalFromSidebar('local')">
               <span class="action-icon">💸</span>
@@ -692,9 +467,7 @@
         </div>
 
         <div class="card">
-          <div class="card-header">
-            <h3>Account Statistics</h3>
-          </div>
+          <div class="card-header"><h3>Account Statistics</h3></div>
           <div class="account-stat-item">
             <span class="account-stat-label">Account Holder</span>
             <span class="account-stat-value" id="accountName">--</span>
@@ -756,12 +529,8 @@
         <input type="text" id="transferDesc" placeholder="Transfer reason">
       </div>
       <div class="transfer-type-group">
-        <label>
-          <input type="radio" name="modalTransferType" value="local" checked> Local Transfer (Free)
-        </label>
-        <label>
-          <input type="radio" name="modalTransferType" value="international"> International Transfer ($25 fee)
-        </label>
+        <label><input type="radio" name="modalTransferType" value="local" checked> Local Transfer (Free)</label>
+        <label><input type="radio" name="modalTransferType" value="international"> International ($25 fee)</label>
       </div>
       <div class="fee-info" id="modalFeeInfo">Local transfers are free.</div>
       <div class="modal-buttons">
@@ -787,14 +556,6 @@
       <label>Description (Optional)</label>
       <input type="text" id="modalDescription" placeholder="Reference">
     </div>
-    <div id="transferFields" style="display:none;">
-      <input type="text" id="recipientAccount" placeholder="Recipient account number">
-      <div class="transfer-type-group">
-        <label><input type="radio" name="transferType" value="local" checked> Local Transfer (Free)</label>
-        <label><input type="radio" name="transferType" value="international"> International Transfer ($25 fee)</label>
-      </div>
-      <div class="fee-info" id="feeInfo">Local transfers are free.</div>
-    </div>
     <div class="modal-buttons">
       <button class="btn-submit" onclick="processTransaction()">Confirm</button>
       <button class="btn-cancel" onclick="closeModal()">Cancel</button>
@@ -805,18 +566,20 @@
 <!-- Transfer Progress Modal -->
 <div id="progressModal" class="modal">
   <div class="modal-content" style="text-align: center;">
-    <h3>Finalizing transfer...</h3>
+    <h3>Processing Transfer...</h3>
     <p>Please do not close this window</p>
     <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-      <div style="font-size: 0.9rem; margin-top: 0.5rem;">100% Complete</div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div style="font-size: 0.9rem; margin-top: 0.5rem; color: #FF9800;">⏳ Transfer Pending</div>
     </div>
     <div class="transfer-details" id="progressDetails">
       <div class="info-row"><span class="info-label">Amount:</span><span class="info-value" id="progressAmount">$0.00</span></div>
       <div class="info-row"><span class="info-label">To:</span><span class="info-value" id="progressRecipient">--</span></div>
       <div class="info-row"><span class="info-label">Account:</span><span class="info-value" id="progressAccount">--</span></div>
+      <div class="info-row"><span class="info-label">Status:</span><span class="info-value" style="color:#FF9800;">⏳ Pending</span></div>
+    </div>
+    <div style="font-size: 0.75rem; color: #6B6B80; margin-bottom: 1rem;">
+      Your transfer is pending. The amount has been deducted from your balance and will be processed shortly.
     </div>
     <div class="modal-buttons">
       <button class="btn-submit" onclick="closeProgressModal()">Done</button>
@@ -833,35 +596,26 @@
 
   function checkAuth() {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (!storedUser) {
-      window.location.href = 'login.html';
-      return false;
-    }
+    if (!storedUser) { window.location.href = 'login.html'; return false; }
     return true;
   }
 
   async function loadUserData() {
     if (!checkAuth()) return;
-    
     const storedUser = JSON.parse(localStorage.getItem('user'));
-
     try {
       const response = await fetch(`/api/user/${encodeURIComponent(storedUser.email)}`);
       const data = await response.json();
-      
       if (data.success) {
         currentUser = data.user;
         if (typeof currentUser.transactions === 'string') {
           currentUser.transactions = JSON.parse(currentUser.transactions);
         }
         if (!currentUser.transactions) currentUser.transactions = [];
-        
         localStorage.setItem('user', JSON.stringify(currentUser));
         updateUI();
         calculateStats();
-      } else {
-        logout();
-      }
+      } else { logout(); }
     } catch (error) {
       showMessage('Error loading data: ' + error.message);
     }
@@ -875,37 +629,39 @@
     document.getElementById('accountType').textContent = currentUser.account_type || '--';
     document.getElementById('accountEmail').textContent = currentUser.email || '--';
     document.getElementById('accountBalance').textContent = '$' + parseFloat(currentUser.balance).toFixed(2);
-    
     const avatar = (currentUser.name || 'U').charAt(0).toUpperCase();
     document.getElementById('userAvatar').textContent = avatar;
-    
+    document.getElementById('userAvatarMobile').textContent = avatar;
     renderTransactions();
   }
 
   function renderTransactions() {
     const container = document.getElementById('transactionList');
-    
     if (!currentUser.transactions || currentUser.transactions.length === 0) {
       container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #6B6B80;">No transactions yet</div>';
       return;
     }
-    
+
     let html = '';
-    const recentTx = currentUser.transactions.slice(0, 5);
-    
+    const recentTx = [...currentUser.transactions].reverse().slice(0, 5);
+
     recentTx.forEach(tx => {
       const isPositive = tx.type === 'deposit' || tx.type === 'transfer_in';
-      const amountClass = isPositive ? 'positive' : 'negative';
+      const isPending = tx.status === 'pending';
+      const amountClass = isPending ? 'pending' : (isPositive ? 'positive' : 'negative');
       const amountSymbol = isPositive ? '+' : '-';
       const icon = tx.type === 'deposit' ? '💰' : (tx.type === 'withdraw' ? '💳' : '🔄');
-      const name = tx.description?.substring(0, 25) || (tx.type === 'deposit' ? 'Deposit' : tx.type === 'withdraw' ? 'Withdrawal' : 'Transfer');
-      
+      const name = (tx.description || (tx.type === 'deposit' ? 'Deposit' : tx.type === 'withdraw' ? 'Withdrawal' : 'Transfer')).substring(0, 25);
+      const statusBadge = isPending
+        ? '<span class="status-badge pending">Pending</span>'
+        : '<span class="status-badge completed">Done</span>';
+
       html += `
         <div class="transaction-item">
           <div class="transaction-info">
             <div class="transaction-icon">${icon}</div>
             <div class="transaction-details">
-              <div class="transaction-name">${name}</div>
+              <div class="transaction-name">${name}${statusBadge}</div>
               <div class="transaction-date">${tx.date || new Date().toISOString().split('T')[0]}</div>
             </div>
           </div>
@@ -915,29 +671,24 @@
         </div>
       `;
     });
-    
+
     container.innerHTML = html;
   }
 
   function calculateStats() {
     let totalVolume = 0;
     let pendingTotal = 0;
-    
     if (currentUser.transactions) {
       currentUser.transactions.forEach(tx => {
         totalVolume += Math.abs(tx.amount);
-        if (tx.status === 'pending') {
-          pendingTotal += Math.abs(tx.amount);
-        }
+        if (tx.status === 'pending') pendingTotal += Math.abs(tx.amount);
       });
     }
-    
     document.getElementById('totalVolume').textContent = '$' + totalVolume.toFixed(2);
     document.getElementById('pendingAmount').textContent = '$' + pendingTotal.toFixed(2);
   }
 
   function showAllTransactions() {
-    // This just scrolls to the transaction table or you can implement a full modal
     document.querySelector('.transaction-section')?.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -945,128 +696,62 @@
     currentAction = action;
     const modal = document.getElementById('transactionModal');
     const title = document.getElementById('modalTitle');
-    const transferFields = document.getElementById('transferFields');
-    const feeInfo = document.getElementById('feeInfo');
-    
     document.getElementById('modalAmount').value = '';
     document.getElementById('modalDescription').value = '';
-    document.getElementById('recipientAccount').value = '';
-    
-    const localRadio = document.querySelector('input[name="transferType"][value="local"]');
-    if (localRadio) localRadio.checked = true;
-    if (feeInfo) feeInfo.textContent = 'Local transfers are free.';
-    
-    if (action === 'deposit') {
-      title.textContent = '💰 Deposit Money';
-      transferFields.style.display = 'none';
-    } else if (action === 'withdraw') {
-      title.textContent = '💸 Withdraw Money';
-      transferFields.style.display = 'none';
-    } else if (action === 'transfer') {
-      title.textContent = '↗️ Transfer Money';
-      transferFields.style.display = 'block';
-      
-      document.querySelectorAll('input[name="transferType"]').forEach(radio => {
-        radio.onclick = () => {
-          if (document.querySelector('input[name="transferType"]:checked').value === 'international') {
-            feeInfo.textContent = 'International transfers have a $25 fee.';
-          } else {
-            feeInfo.textContent = 'Local transfers are free.';
-          }
-        };
-      });
-    }
-    
+    if (action === 'deposit') title.textContent = '💰 Deposit Money';
+    else if (action === 'withdraw') title.textContent = '💸 Withdraw Money';
     modal.style.display = 'flex';
   }
 
-  function closeModal() {
-    document.getElementById('transactionModal').style.display = 'none';
-  }
+  function closeModal() { document.getElementById('transactionModal').style.display = 'none'; }
 
   async function processTransaction() {
     const amount = parseFloat(document.getElementById('modalAmount').value);
     const description = document.getElementById('modalDescription').value;
-    
-    if (isNaN(amount) || amount <= 0) {
-      showMessage('Please enter a valid amount');
-      return;
-    }
-    
+    if (isNaN(amount) || amount <= 0) { showMessage('Please enter a valid amount'); return; }
+
     let endpoint = '';
-    let body = { email: currentUser.email, amount: amount, description: description };
-    
-    if (currentAction === 'deposit') {
-      endpoint = '/api/deposit';
-    } else if (currentAction === 'withdraw') {
-      endpoint = '/api/withdraw';
-    } else if (currentAction === 'transfer') {
-      const recipientAccount = document.getElementById('recipientAccount').value.trim();
-      if (!recipientAccount) {
-        showMessage('Please enter recipient account number');
-        return;
-      }
-      const transferType = document.querySelector('input[name="transferType"]:checked').value;
-      endpoint = '/api/transfer';
-      body.recipientAccountNumber = recipientAccount;
-      body.transferType = transferType;
-    }
-    
+    let body = { email: currentUser.email, amount, description };
+    if (currentAction === 'deposit') endpoint = '/api/deposit';
+    else if (currentAction === 'withdraw') endpoint = '/api/withdraw';
+
     closeModal();
     showMessage('Processing...');
-    
+
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
-      
       const data = await response.json();
-      
-      if (data.success) {
-        showMessage(data.message);
-        await loadUserData();
-      } else {
-        showMessage(data.message || 'Transaction failed');
-      }
-    } catch (error) {
-      showMessage('Error: ' + error.message);
-    }
+      if (data.success) { showMessage(data.message); await loadUserData(); }
+      else showMessage(data.message || 'Transaction failed');
+    } catch (error) { showMessage('Error: ' + error.message); }
   }
 
   function openTransferModalFromSidebar(type) {
     currentTransferTypeFromModal = type;
     const modal = document.getElementById('transferModal');
-    const transferForm = document.getElementById('transferFormFields');
-    
     document.getElementById('recipientAccount').value = '';
     document.getElementById('transferAmount').value = '';
     document.getElementById('transferDesc').value = '';
-    
-    const localRadio = document.querySelector('input[name="modalTransferType"][value="local"]');
-    const internationalRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
+
     const feeInfo = document.getElementById('modalFeeInfo');
-    
-    if (type === 'local') {
-      if (localRadio) localRadio.checked = true;
-      feeInfo.textContent = 'Local transfers are free.';
-    } else {
-      if (internationalRadio) internationalRadio.checked = true;
-      feeInfo.textContent = 'International transfers have a $25 fee.';
-    }
-    
+    const localRadio = document.querySelector('input[name="modalTransferType"][value="local"]');
+    const intlRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
+
+    if (type === 'local') { localRadio.checked = true; feeInfo.textContent = 'Local transfers are free.'; }
+    else { intlRadio.checked = true; feeInfo.textContent = 'International transfers have a $25 fee.'; }
+
     document.querySelectorAll('input[name="modalTransferType"]').forEach(radio => {
       radio.onclick = () => {
-        if (document.querySelector('input[name="modalTransferType"]:checked').value === 'international') {
-          feeInfo.textContent = 'International transfers have a $25 fee.';
-        } else {
-          feeInfo.textContent = 'Local transfers are free.';
-        }
+        feeInfo.textContent = document.querySelector('input[name="modalTransferType"]:checked').value === 'international'
+          ? 'International transfers have a $25 fee.' : 'Local transfers are free.';
       };
     });
-    
-    transferForm.style.display = 'block';
+
+    document.getElementById('transferFormFields').style.display = 'block';
     modal.style.display = 'flex';
   }
 
@@ -1074,16 +759,9 @@
     currentTransferTypeFromModal = type;
     const feeInfo = document.getElementById('modalFeeInfo');
     const localRadio = document.querySelector('input[name="modalTransferType"][value="local"]');
-    const internationalRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
-    
-    if (type === 'local') {
-      if (localRadio) localRadio.checked = true;
-      feeInfo.textContent = 'Local transfers are free.';
-    } else {
-      if (internationalRadio) internationalRadio.checked = true;
-      feeInfo.textContent = 'International transfers have a $25 fee.';
-    }
-    
+    const intlRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
+    if (type === 'local') { localRadio.checked = true; feeInfo.textContent = 'Local transfers are free.'; }
+    else { intlRadio.checked = true; feeInfo.textContent = 'International transfers have a $25 fee.'; }
     document.getElementById('transferFormFields').style.display = 'block';
   }
 
@@ -1097,63 +775,55 @@
     const amount = parseFloat(document.getElementById('transferAmount').value);
     const description = document.getElementById('transferDesc').value;
     const transferType = document.querySelector('input[name="modalTransferType"]:checked').value;
-    
-    if (!recipientAccount) {
-      showMessage('Please enter recipient account number');
-      return;
-    }
-    
-    if (isNaN(amount) || amount <= 0) {
-      showMessage('Please enter a valid amount');
-      return;
-    }
-    
+
+    if (!recipientAccount) { showMessage('Please enter recipient account number'); return; }
+    if (isNaN(amount) || amount <= 0) { showMessage('Please enter a valid amount'); return; }
+    if (amount > parseFloat(currentUser.balance)) { showMessage('Insufficient balance'); return; }
+
     closeTransferModal();
-    
+
+    // Show progress modal
     document.getElementById('progressAmount').textContent = '$' + amount.toFixed(2);
     document.getElementById('progressAccount').textContent = recipientAccount;
-    document.getElementById('progressRecipient').textContent = 'Searching...';
-    
-    const progressModal = document.getElementById('progressModal');
-    progressModal.style.display = 'flex';
-    
+    document.getElementById('progressRecipient').textContent = 'Processing...';
+    document.getElementById('progressModal').style.display = 'flex';
+
+    // Look up recipient name
     try {
       const recipientRes = await fetch(`/api/user-by-account/${recipientAccount}`);
       const recipientData = await recipientRes.json();
-      if (recipientData.success) {
-        document.getElementById('progressRecipient').textContent = recipientData.user.name;
-      } else {
-        document.getElementById('progressRecipient').textContent = 'Recipient not found';
-      }
+      document.getElementById('progressRecipient').textContent = recipientData.success ? recipientData.user.name : 'External Account';
     } catch (e) {
-      document.getElementById('progressRecipient').textContent = 'Unknown recipient';
+      document.getElementById('progressRecipient').textContent = 'External Account';
     }
-    
+
+    // Process transfer — deduct balance and add as PENDING
     try {
       const response = await fetch('/api/transfer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: currentUser.email,
-          amount: amount,
+          amount,
           recipientAccountNumber: recipientAccount,
-          description: description,
-          transferType: transferType
+          description: description || `Transfer to ${recipientAccount}`,
+          transferType,
+          status: 'pending'   // <-- tells backend to mark as pending
         })
       });
-      
+
       const data = await response.json();
-      
+
       setTimeout(async () => {
         if (data.success) {
-          showMessage(data.message);
+          showMessage('Transfer is pending — amount deducted from balance');
           await loadUserData();
         } else {
           showMessage(data.message || 'Transfer failed');
+          closeProgressModal();
         }
-        closeProgressModal();
       }, 2000);
-      
+
     } catch (error) {
       setTimeout(() => {
         showMessage('Error: ' + error.message);
@@ -1162,23 +832,16 @@
     }
   }
 
-  function closeProgressModal() {
-    document.getElementById('progressModal').style.display = 'none';
-  }
+  function closeProgressModal() { document.getElementById('progressModal').style.display = 'none'; }
 
   function showMessage(msg) {
     const toast = document.getElementById('messageToast');
     toast.textContent = msg;
     toast.style.display = 'block';
-    setTimeout(() => {
-      toast.style.display = 'none';
-    }, 4000);
+    setTimeout(() => { toast.style.display = 'none'; }, 4000);
   }
 
-  function logout() {
-    localStorage.removeItem('user');
-    window.location.href = 'index.html';
-  }
+  function logout() { localStorage.removeItem('user'); window.location.href = 'index.html'; }
 
   loadUserData();
 </script>
