@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stonebridge Trust | Your Trusted Financial Partner</title>
+  <title>Stonebridge Trust | Private Banking & Wealth Management</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --chase-blue: #0D419D;
-      --chase-blue-dark: #0A357A;
-      --chase-blue-light: #E8F0FE;
-      --white: #FFFFFF;
-      --gray-50: #F8F9FA;
-      --gray-100: #F0F2F4;
-      --gray-200: #E4E7EB;
-      --gray-600: #6B7280;
-      --gray-700: #4B5563;
-      --gray-900: #1F2937;
-      --black: #000000;
+      --bg-primary: #0A0A0F;
+      --bg-secondary: #111118;
+      --bg-card: #14141E;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0A0B0;
+      --text-muted: #6B6B80;
+      --accent-gold: #C6A43F;
+      --accent-gold-dark: #a8882c;
+      --border-light: rgba(255,255,255,0.06);
+      --border-gold: rgba(198, 164, 63, 0.3);
+      --shadow-card: 0 12px 32px rgba(0,0,0,0.4);
     }
 
     body { 
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-      background: var(--white);
-      color: var(--gray-900);
+      background: var(--bg-primary);
+      color: var(--text-primary);
     }
 
-    /* NAVIGATION - Chase Style */
     nav {
-      background: var(--white);
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,17 +40,13 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.03);
+      border-bottom: 1px solid var(--border-light);
       flex-wrap: wrap;
       gap: 1rem;
-      border-bottom: 1px solid var(--gray-200);
     }
-    .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--chase-blue);
-      text-decoration: none;
-      letter-spacing: -0.3px;
+    .nav-logo img {
+      height: 45px;
+      width: auto;
     }
     .nav-links { 
       display: flex; 
@@ -60,215 +56,249 @@
       flex-wrap: wrap;
     }
     .nav-links a {
-      color: var(--gray-700);
+      color: var(--text-secondary);
       text-decoration: none;
       padding: 0.5rem 1rem;
       font-size: 0.85rem;
       font-weight: 500;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: all 0.2s ease;
     }
     .nav-links a:hover { 
-      background: var(--gray-100);
-      color: var(--chase-blue);
+      background: rgba(255,255,255,0.05);
+      color: var(--accent-gold);
     }
     .nav-links .btn-nav {
-      background: var(--chase-blue);
-      color: white;
+      background: var(--accent-gold);
+      color: #0A0A0F;
       padding: 0.5rem 1.25rem;
-      border-radius: 6px;
-      font-weight: 500;
+      border-radius: 8px;
+      font-weight: 600;
     }
     .nav-links .btn-nav:hover { 
-      background: var(--chase-blue-dark);
-      color: white;
-    }
-    .nav-links .btn-logout {
-      background: var(--gray-100);
-      color: var(--gray-700);
-    }
-    .nav-links .btn-logout:hover {
-      background: #fee2e2;
-      color: #dc2626;
+      background: var(--accent-gold-dark);
+      color: #0A0A0F;
     }
 
-    /* HERO - Clean & Professional */
     .hero {
-      background: var(--gray-50);
-      padding: 4rem 3rem;
+      min-height: 85vh;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       display: flex;
       align-items: center;
-      min-height: 70vh;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 140%;
+      background: radial-gradient(circle, rgba(198,164,63,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
     }
     .hero-content { 
-      max-width: 600px; 
+      max-width: 620px; 
+      position: relative;
+      z-index: 2;
     }
     .hero-tag {
+      display: inline-block;
+      background: rgba(198, 164, 63, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold);
       font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--chase-blue);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
       font-weight: 600;
-      color: var(--gray-900);
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
       letter-spacing: -0.02em;
     }
     .hero h1 span { 
-      color: var(--chase-blue);
+      color: var(--accent-gold);
     }
     .hero p {
       font-size: 1rem;
-      color: var(--gray-600);
+      color: var(--text-secondary);
       line-height: 1.6;
       margin-bottom: 2rem;
-      max-width: 500px;
+      max-width: 480px;
     }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.75rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       cursor: pointer;
       border: none;
     }
     .btn-primary { 
-      background: var(--chase-blue); 
-      color: white; 
+      background: var(--accent-gold); 
+      color: #0A0A0F; 
     }
     .btn-primary:hover { 
-      background: var(--chase-blue-dark);
+      background: var(--accent-gold-dark);
+      transform: translateY(-2px);
     }
     .btn-outline { 
-      border: 1px solid var(--gray-300); 
-      color: var(--gray-700); 
-      background: white; 
+      border: 1px solid rgba(255,255,255,0.2); 
+      color: var(--text-primary); 
+      background: transparent; 
     }
     .btn-outline:hover { 
-      border-color: var(--chase-blue); 
-      color: var(--chase-blue);
-      background: var(--chase-blue-light);
+      border-color: var(--accent-gold); 
+      color: var(--accent-gold);
+      background: rgba(198, 164, 63, 0.05);
     }
 
-    /* STATS BAR - Minimal */
     .stats-bar {
-      background: white;
+      background: var(--bg-secondary);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--gray-200);
-      padding: 2rem 3rem;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 2.5rem 3rem;
     }
     .stat {
       text-align: center;
+      border-right: 1px solid var(--border-light);
     }
+    .stat:last-child { border-right: none; }
     .stat-num {
-      font-size: 1.75rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
       font-weight: 600;
-      color: var(--chase-blue);
+      color: var(--accent-gold);
       display: block;
       margin-bottom: 0.25rem;
     }
     .stat-label { 
-      font-size: 0.75rem; 
-      color: var(--gray-600); 
+      font-size: 0.7rem; 
+      color: var(--text-muted); 
       text-transform: uppercase; 
-      letter-spacing: 0.05em; 
+      letter-spacing: 0.08em; 
       font-weight: 500;
     }
 
-    /* SERVICES SECTION */
-    .services-section { padding: 5rem 3rem; background: var(--white); }
+    .services-section { padding: 5rem 3rem; background: var(--bg-primary); }
     .section-header { text-align: center; margin-bottom: 3rem; }
     .section-label { 
       font-size: 0.7rem; 
-      letter-spacing: 0.1em; 
+      letter-spacing: 0.15em; 
       text-transform: uppercase; 
-      color: var(--chase-blue); 
+      color: var(--accent-gold); 
       font-weight: 600; 
       display: block; 
       margin-bottom: 0.5rem; 
     }
     .section-title { 
-      font-size: 2rem; 
-      font-weight: 600; 
-      color: var(--gray-900); 
+      font-family: 'Playfair Display', serif; 
+      font-size: 2.2rem; 
+      font-weight: 500; 
+      color: var(--text-primary); 
       letter-spacing: -0.02em;
     }
     .section-sub { 
-      color: var(--gray-600); 
-      font-size: 1rem; 
+      color: var(--text-secondary); 
+      font-size: 0.95rem; 
       margin-top: 0.75rem; 
-      max-width: 600px; 
+      max-width: 550px; 
       margin-left: auto; 
       margin-right: auto; 
     }
 
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
     .service-card {
-      background: var(--white);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid var(--gray-200);
+      border: 1px solid var(--border-light);
       transition: all 0.3s ease;
     }
     .service-card:hover { 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08); 
-      transform: translateY(-4px);
-      border-color: var(--chase-blue-light);
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-card);
     }
     .service-card-img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
       display: block;
+      filter: grayscale(20%);
     }
-    .service-card-body { padding: 1.5rem; }
-    .service-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .service-card-body { padding: 1.75rem; }
+    .service-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
     .service-card-body h3 { 
       font-size: 1.2rem; 
       font-weight: 600; 
-      color: var(--gray-900); 
+      color: var(--text-primary); 
       margin-bottom: 0.5rem; 
     }
     .service-card-body p { 
       font-size: 0.85rem; 
-      color: var(--gray-600); 
+      color: var(--text-secondary); 
       line-height: 1.5; 
       margin-bottom: 1rem; 
     }
     .service-link { 
-      font-size: 0.85rem; 
+      font-size: 0.8rem; 
       font-weight: 500; 
-      color: var(--chase-blue); 
+      color: var(--accent-gold); 
       text-decoration: none; 
       display: inline-flex; 
       align-items: center; 
-      gap: 0.3rem;
+      gap: 0.4rem;
     }
-    .service-link:hover { text-decoration: underline; gap: 0.5rem; }
+    .service-link:hover { gap: 0.6rem; text-decoration: underline; }
 
-    /* WHY US */
     .why-section {
       padding: 5rem 3rem;
-      background: var(--gray-50);
+      background: var(--bg-secondary);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: center;
     }
-    .why-img-wrap { border-radius: 12px; overflow: hidden; }
+    .why-img-wrap { border-radius: 20px; overflow: hidden; position: relative; }
+    .why-img-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(198,164,63,0.1), transparent);
+      pointer-events: none;
+    }
     .why-img-wrap img {
       width: 100%;
-      height: 400px;
+      height: 450px;
       object-fit: cover;
       display: block;
     }
@@ -278,15 +308,15 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
       font-size: 0.9rem;
-      color: var(--gray-700);
+      color: var(--text-secondary);
     }
     .why-list li .check {
       width: 20px;
       height: 20px;
-      background: var(--chase-blue);
-      color: white;
+      background: var(--accent-gold);
+      color: #0A0A0F;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
@@ -296,76 +326,74 @@
       flex-shrink: 0;
     }
 
-    /* TESTIMONIALS */
-    .testimonials { padding: 5rem 3rem; background: var(--white); }
+    .testimonials { padding: 5rem 3rem; background: var(--bg-primary); }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
     .testimonial-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 1px solid var(--gray-200);
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 1.75rem;
+      border: 1px solid var(--border-light);
       transition: all 0.3s ease;
     }
     .testimonial-card:hover {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      border-color: var(--gray-300);
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
     }
-    .stars { color: #fbbf24; font-size: 0.85rem; margin-bottom: 0.75rem; letter-spacing: 1px; }
-    .testimonial-text { font-size: 0.85rem; color: var(--gray-700); line-height: 1.6; margin-bottom: 1rem; }
+    .stars { color: var(--accent-gold); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; font-style: italic; }
     .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
     .author-avatar {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: var(--chase-blue);
-      color: white;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+      color: #0A0A0F;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.85rem;
     }
-    .author-name { font-weight: 600; color: var(--gray-900); font-size: 0.85rem; }
-    .author-role { font-size: 0.7rem; color: var(--gray-500); }
+    .author-name { font-weight: 600; color: var(--text-primary); font-size: 0.85rem; }
+    .author-role { font-size: 0.7rem; color: var(--text-muted); }
 
-    /* CTA BANNER */
     .cta-banner {
-      background: var(--chase-blue);
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      margin: 0 3rem 3rem 3rem;
       padding: 3rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-gold);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 2rem;
     }
-    .cta-banner h2 { font-size: 1.5rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
-    .cta-banner p { color: rgba(255,255,255,0.8); font-size: 0.9rem; max-width: 500px; }
-    .cta-banner .btn-primary { background: white; color: var(--chase-blue); }
-    .cta-banner .btn-primary:hover { background: var(--gray-100); }
-    .cta-banner .btn-outline { border-color: rgba(255,255,255,0.3); color: white; background: transparent; }
-    .cta-banner .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .cta-banner p { color: var(--text-secondary); font-size: 0.85rem; max-width: 450px; }
+    .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    /* FOOTER */
     footer {
-      background: var(--gray-900);
-      color: #9CA3AF;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
       padding: 3rem;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 2rem;
+      border-top: 1px solid var(--border-light);
     }
-    .footer-brand .nav-logo { font-size: 1rem; display: inline-block; margin-bottom: 1rem; color: white; text-decoration: none; font-weight: 600; }
+    .footer-brand .nav-logo img { height: 35px; margin-bottom: 1rem; }
     .footer-brand p { font-size: 0.75rem; line-height: 1.5; max-width: 240px; }
-    .footer-col h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: white; margin-bottom: 1rem; font-weight: 600; }
-    .footer-col a { display: block; color: #9CA3AF; text-decoration: none; font-size: 0.75rem; margin-bottom: 0.5rem; transition: color 0.2s; }
-    .footer-col a:hover { color: white; }
+    .footer-col h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 600; }
+    .footer-col a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.75rem; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-gold); }
     .footer-bottom { 
-      background: var(--gray-900); 
+      background: var(--bg-primary); 
       text-align: center; 
       padding: 1rem; 
       font-size: 0.7rem; 
-      color: #6B7280; 
-      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-muted); 
+      border-top: 1px solid var(--border-light);
     }
 
     @media (max-width: 900px) {
@@ -375,7 +403,7 @@
       .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 1.5rem; }
       .services-grid, .testimonials-grid, .why-section { grid-template-columns: 1fr; }
       .why-section { padding: 3rem 1.5rem; gap: 2rem; }
-      .cta-banner { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .cta-banner { margin: 2rem 1.5rem; padding: 2rem 1.5rem; text-align: center; flex-direction: column; }
       footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
       .services-section, .testimonials { padding: 3rem 1.5rem; }
     }
@@ -384,57 +412,59 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Stonebridge Trust</a>
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png.jpg" alt="Stonebridge Trust">
+    </a>
     <ul class="nav-links" id="navLinks"></ul>
   </nav>
 
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-tag">BANKING & FINANCIAL SERVICES</div>
-      <h1>Banking built for <span>your financial future</span></h1>
-      <p>Secure banking, home mortgages, and loans — all with transparent rates and no hidden fees.</p>
+      <div class="hero-tag">✦ PRIVATE BANKING & WEALTH MANAGEMENT</div>
+      <h1>Where <span>tradition</span> meets <span>innovation</span></h1>
+      <p>Over two decades of excellence in private banking, wealth management, and financial advisory — built on trust, integrity, and discretion.</p>
       <div class="hero-btns" id="heroButtons"></div>
     </div>
   </section>
 
   <div class="stats-bar">
-    <div class="stat"><span class="stat-num">$2.8B+</span><span class="stat-label">Assets</span></div>
-    <div class="stat"><span class="stat-num">105K+</span><span class="stat-label">Customers</span></div>
-    <div class="stat"><span class="stat-num">99%</span><span class="stat-label">Satisfaction</span></div>
-    <div class="stat"><span class="stat-num">50</span><span class="stat-label">States</span></div>
+    <div class="stat"><span class="stat-num">$2.8B+</span><span class="stat-label">Assets Under Management</span></div>
+    <div class="stat"><span class="stat-num">105K+</span><span class="stat-label">Private Clients</span></div>
+    <div class="stat"><span class="stat-num">98%</span><span class="stat-label">Client Retention</span></div>
+    <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Years of Excellence</span></div>
   </div>
 
   <section class="services-section">
     <div class="section-header">
-      <span class="section-label">What We Offer</span>
-      <h2 class="section-title">Financial solutions for every need</h2>
-      <p class="section-sub">From everyday banking to home financing — designed for you.</p>
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">Tailored financial solutions</h2>
+      <p class="section-sub">Comprehensive banking and wealth management for discerning clients.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600" alt="Banking" class="service-card-img">
         <div class="service-card-body">
           <div class="service-icon">🏦</div>
-          <h3>Personal Banking</h3>
-          <p>Checking, savings, and money management — zero hidden fees.</p>
-          <a href="banking.html" class="service-link">Learn More →</a>
+          <h3>Private Banking</h3>
+          <p>Exclusive banking services with dedicated relationship managers and priority support.</p>
+          <a href="banking.html" class="service-link">Discover →</a>
         </div>
       </div>
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600" alt="Housing" class="service-card-img">
         <div class="service-card-body">
           <div class="service-icon">🏠</div>
-          <h3>Home Mortgages</h3>
-          <p>Low rates and first-time buyer programs for your dream home.</p>
-          <a href="housing.html" class="service-link">View Rates →</a>
+          <h3>Wealth Management</h3>
+          <p>Comprehensive wealth planning, investment strategies, and portfolio management.</p>
+          <a href="housing.html" class="service-link">Learn More →</a>
         </div>
       </div>
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" alt="Loans" class="service-card-img">
         <div class="service-card-body">
           <div class="service-icon">💰</div>
-          <h3>Personal & Business Loans</h3>
-          <p>Fast approvals, competitive rates, flexible terms.</p>
+          <h3>Private Lending</h3>
+          <p>Tailored lending solutions including mortgages, business loans, and lines of credit.</p>
           <a href="loans.html" class="service-link">Apply Now →</a>
         </div>
       </div>
@@ -448,13 +478,13 @@
     <div class="why-text">
       <span class="section-label">Why Choose Us</span>
       <h2 class="section-title">A bank you can trust</h2>
-      <p class="section-sub">We combine modern technology with personal service — because your money matters.</p>
+      <p class="section-sub">We combine traditional values with modern innovation — because your financial future matters.</p>
       <ul class="why-list">
         <li><span class="check">✓</span> FDIC-insured deposits</li>
-        <li><span class="check">✓</span> 24/7 online and mobile banking</li>
+        <li><span class="check">✓</span> 24/7 dedicated relationship manager</li>
         <li><span class="check">✓</span> No hidden fees — total transparency</li>
-        <li><span class="check">✓</span> Real-time transaction alerts</li>
-        <li><span class="check">✓</span> Dedicated customer support</li>
+        <li><span class="check">✓</span> Bank-grade encryption & security</li>
+        <li><span class="check">✓</span> Personalized financial planning</li>
       </ul>
       <a href="register.html" class="btn btn-primary" id="ctaButton">Open an Account →</a>
     </div>
@@ -463,8 +493,8 @@
   <section class="testimonials">
     <div class="section-header">
       <span class="section-label">Client Stories</span>
-      <h2 class="section-title">What our customers say</h2>
-      <p class="section-sub">Real experiences from real customers.</p>
+      <h2 class="section-title">What our clients say</h2>
+      <p class="section-sub">Real experiences from our valued clients.</p>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card">
@@ -497,21 +527,23 @@
   <section class="cta-banner">
     <div>
       <h2>Ready to get started?</h2>
-      <p>Join over 100,000 customers who trust Stonebridge Trust.</p>
+      <p>Join over 100,000 clients who trust Stonebridge Trust with their financial future.</p>
     </div>
     <div class="cta-btns" id="ctaButtons"></div>
   </section>
 
   <footer>
     <div class="footer-brand">
-      <a href="index.html" class="nav-logo">Stonebridge Trust</a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png.jpg" alt="Stonebridge Trust" style="height: 35px;">
+      </a>
       <p>Your trusted financial partner since 2005.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
-      <a href="banking.html">Banking</a>
-      <a href="housing.html">Housing</a>
-      <a href="loans.html">Loans</a>
+      <a href="banking.html">Private Banking</a>
+      <a href="housing.html">Wealth Management</a>
+      <a href="loans.html">Private Lending</a>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
@@ -550,7 +582,7 @@
       <li><a href="loans.html">Loans</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="#" onclick="logout()" class="btn-nav btn-logout">Logout</a></li>
+      <li><a href="#" onclick="logout()" class="btn-nav">Logout</a></li>
     `;
 
     const publicHeroButtons = `
