@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Dashboard - Stonebridge Trust</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -18,9 +18,9 @@
 
     .dashboard-wrapper { display: flex; min-height: 100vh; }
 
-    /* Sidebar */
+    /* ===== SIDEBAR ===== */
     .sidebar {
-      width: 280px;
+      width: 260px;
       background: #111118;
       border-right: 1px solid rgba(255,255,255,0.06);
       padding: 2rem 1.5rem;
@@ -28,7 +28,6 @@
       height: 100vh;
       overflow-y: auto;
       z-index: 200;
-      transition: width 0.3s ease;
     }
 
     .sidebar-logo {
@@ -37,7 +36,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .sidebar-logo img { height: 40px; width: auto; cursor: pointer; }
+    .sidebar-logo img { height: 35px; width: auto; cursor: pointer; }
 
     .sidebar-menu { list-style: none; }
     .sidebar-menu li { margin-bottom: 0.25rem; }
@@ -45,15 +44,14 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 1rem;
       color: #A0A0B0;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 0.85rem;
       font-weight: 500;
       transition: all 0.2s ease;
       cursor: pointer;
-      white-space: nowrap;
     }
     .sidebar-menu a:hover { background: rgba(255,255,255,0.05); color: #C6A43F; }
     .sidebar-menu .active a { background: rgba(198, 164, 63, 0.12); color: #C6A43F; }
@@ -66,12 +64,10 @@
       padding: 0.75rem 1rem 0.5rem;
     }
 
-    .menu-icon { font-size: 1.1rem; flex-shrink: 0; }
-    .menu-text { overflow: hidden; transition: opacity 0.2s ease; }
+    /* ===== MAIN CONTENT ===== */
+    .main-content { flex: 1; margin-left: 260px; padding: 2rem; }
 
-    /* Main Content */
-    .main-content { flex: 1; margin-left: 280px; padding: 2rem; }
-
+    /* ===== TOP HEADER ===== */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -81,102 +77,175 @@
       gap: 1rem;
     }
 
-    .welcome-text h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .welcome-text h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
     .welcome-text p { color: #A0A0B0; font-size: 0.85rem; }
 
     .user-profile { display: flex; align-items: center; gap: 1rem; }
     .user-avatar {
-      width: 45px; height: 45px;
-      background: linear-gradient(135deg, #C6A43F, #a8882c);
+      width: 40px; height: 40px;
+      background: #C6A43F;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1rem;
+      font-weight: 700; font-size: 0.9rem;
+      color: #0A0A0F;
     }
-    .user-info span { font-size: 0.8rem; color: #A0A0B0; }
-    .user-info strong { font-size: 0.9rem; }
 
-    /* Stats Grid */
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    /* ===== STATS GRID ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
     .stat-card {
       background: #14141E;
       border-radius: 20px;
-      padding: 1.5rem;
+      padding: 1.25rem;
       border: 1px solid rgba(255,255,255,0.06);
     }
-    .stat-card .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6B6B80; margin-bottom: 0.5rem; }
-    .stat-card .stat-value { font-size: 1.5rem; font-weight: 700; color: #C6A43F; margin-bottom: 0.25rem; }
-    .stat-card .stat-sub { font-size: 0.7rem; color: #6B6B80; }
 
-    /* Two Column Layout */
-    .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-    .card { background: #14141E; border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); }
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+    .stat-card .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6B6B80;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-card .stat-sub {
+      font-size: 0.65rem;
+      color: #6B6B80;
+    }
+
+    /* Account row with copy */
+    .account-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .copy-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      cursor: pointer;
+      color: #A0A0B0;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: rgba(198, 164, 63, 0.2); color: #C6A43F; }
+
+    /* ===== RECENT TRANSACTIONS ===== */
+    .transactions-card {
+      background: #14141E;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
     .card-header h3 { font-size: 1rem; font-weight: 600; }
     .card-header a { color: #C6A43F; text-decoration: none; font-size: 0.75rem; cursor: pointer; }
 
-    /* Transaction List */
     .transaction-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 0;
+      padding: 0.85rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .transaction-item:last-child { border-bottom: none; }
-    .transaction-info { display: flex; align-items: center; gap: 12px; }
-    .transaction-icon {
-      width: 40px; height: 40px;
-      background: rgba(198, 164, 63, 0.12);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-    }
-    .transaction-details .transaction-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .transaction-details .transaction-date { font-size: 0.7rem; color: #6B6B80; }
-    .transaction-amount { font-weight: 600; font-size: 0.9rem; }
+
+    .transaction-left { flex: 1; }
+    .transaction-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .transaction-date { font-size: 0.7rem; color: #6B6B80; }
+
+    .transaction-right { text-align: right; }
+    .transaction-amount { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
     .transaction-amount.positive { color: #4CAF50; }
     .transaction-amount.negative { color: #f44336; }
-    .transaction-amount.pending { color: #FF9800; }
 
-    /* Pending badge */
     .status-badge {
       display: inline-block;
       font-size: 0.6rem;
-      padding: 0.15rem 0.4rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
       font-weight: 600;
-      text-transform: uppercase;
-      margin-left: 0.3rem;
     }
-    .status-badge.pending { background: rgba(255, 152, 0, 0.15); color: #FF9800; }
     .status-badge.completed { background: rgba(76, 175, 80, 0.15); color: #4CAF50; }
+    .status-badge.pending { background: rgba(255, 152, 0, 0.15); color: #FF9800; }
 
-    .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.5rem; }
-    .action-btn {
-      background: rgba(255,255,255,0.05);
+    /* ===== QUICK ACTIONS ===== */
+    .actions-card {
+      background: #14141E;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      padding: 0.9rem;
+    }
+
+    .actions-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+    }
+    .action-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 0.7rem 0.5rem;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #A0A0B0;
     }
-    .action-btn:hover { background: rgba(198, 164, 63, 0.12); border-color: rgba(198, 164, 63, 0.3); }
-    .action-btn .action-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
-    .action-btn .action-label { font-size: 0.75rem; font-weight: 500; }
+    .action-btn:hover { background: rgba(198, 164, 63, 0.1); border-color: rgba(198, 164, 63, 0.3); color: #C6A43F; }
 
-    .account-stat-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    /* ===== SUPPORT CARD ===== */
+    .support-card {
+      background: #14141E;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
     }
-    .account-stat-item:last-child { border-bottom: none; }
-    .account-stat-label { font-size: 0.8rem; color: #A0A0B0; }
-    .account-stat-value { font-size: 0.85rem; font-weight: 600; }
+    .support-card h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .support-card p { font-size: 0.75rem; color: #A0A0B0; margin-bottom: 1rem; }
+    .support-btn {
+      background: rgba(198, 164, 63, 0.15);
+      border: 1px solid rgba(198, 164, 63, 0.3);
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #C6A43F;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .support-btn:hover { background: rgba(198, 164, 63, 0.25); }
 
-    /* Modal */
+    /* ===== MODALS ===== */
     .modal {
       display: none;
       position: fixed;
@@ -189,65 +258,33 @@
     }
     .modal-content {
       background: #14141E;
-      border-radius: 24px;
+      border-radius: 20px;
       padding: 2rem;
-      max-width: 480px;
+      max-width: 450px;
       width: 90%;
       border: 1px solid rgba(255,255,255,0.1);
     }
-    .modal-content h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; }
+    .modal-content h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: white; }
     .modal-content p { color: #A0A0B0; font-size: 0.85rem; margin-bottom: 1.5rem; }
-
-    .transfer-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-    .transfer-option {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .transfer-option:hover { background: rgba(198, 164, 63, 0.12); border-color: rgba(198, 164, 63, 0.3); }
-    .transfer-option .option-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
-    .transfer-option .option-title { font-weight: 600; margin-bottom: 0.25rem; }
-    .transfer-option .option-desc { font-size: 0.7rem; color: #6B6B80; }
 
     .input-group { margin-bottom: 1rem; }
     .input-group label { display: block; font-size: 0.75rem; color: #A0A0B0; margin-bottom: 0.5rem; }
-    .input-group input, .input-group select {
+    .input-group input {
       width: 100%;
       padding: 0.8rem;
       background: #1A1A26;
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
+      border-radius: 10px;
       color: white;
       font-size: 0.9rem;
     }
-    .input-group input:focus, .input-group select:focus { outline: none; border-color: #C6A43F; }
-
-    .transfer-type-group { margin: 0.75rem 0; }
-    .transfer-type-group label { display: inline-block; margin-right: 1rem; cursor: pointer; color: #A0A0B0; font-size: 0.8rem; }
-    .transfer-type-group input { width: auto; margin-right: 0.25rem; }
-
-    .fee-info { background: rgba(255,255,255,0.05); padding: 0.5rem; border-radius: 8px; font-size: 0.75rem; margin: 0.5rem 0; color: #6B6B80; }
+    .input-group input:focus { outline: none; border-color: #C6A43F; }
 
     .modal-buttons { display: flex; gap: 1rem; margin-top: 1.5rem; }
-    .modal-buttons button { flex: 1; padding: 0.8rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .modal-buttons button { flex: 1; padding: 0.8rem; border-radius: 10px; font-weight: 600; cursor: pointer; }
     .btn-submit { background: #C6A43F; color: #0A0A0F; border: none; }
     .btn-submit:hover { background: #a8882c; }
     .btn-cancel { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); }
-    .btn-cancel:hover { background: rgba(255,255,255,0.1); }
-
-    .progress-container { text-align: center; margin: 2rem 0; }
-    .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin: 1rem 0; }
-    .progress-fill { width: 100%; height: 100%; background: #C6A43F; border-radius: 3px; animation: progress 2s ease; }
-    @keyframes progress { from { width: 0%; } to { width: 100%; } }
-
-    .transfer-details { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1rem; margin: 1rem 0; }
-    .info-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; }
-    .info-label { font-size: 0.75rem; color: #6B6B80; }
-    .info-value { font-size: 0.85rem; }
 
     .message-toast {
       position: fixed;
@@ -263,7 +300,7 @@
 
     footer { margin-top: 2rem; text-align: center; padding: 1rem; color: #6B6B80; font-size: 0.7rem; }
 
-    /* ===== MOBILE SIDEBAR FIX ===== */
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 1000px) {
       .sidebar {
         width: 100%;
@@ -279,43 +316,16 @@
         overflow-x: auto;
         overflow-y: hidden;
       }
-
       .sidebar-logo { display: none; }
-
-      .sidebar-menu {
-        display: flex;
-        flex-direction: row;
-        gap: 0.25rem;
-        overflow-x: auto;
-        padding-bottom: 0.25rem;
-        scrollbar-width: none;
-      }
+      .sidebar-menu { display: flex; flex-direction: row; gap: 0.25rem; overflow-x: auto; padding-bottom: 0.25rem; }
       .sidebar-menu::-webkit-scrollbar { display: none; }
-
       .sidebar-menu li { margin-bottom: 0; flex-shrink: 0; }
       .sidebar-menu .menu-label { display: none; }
       .sidebar-menu .menu-divider { display: none; }
-
-      .sidebar-menu a {
-        flex-direction: column;
-        gap: 4px;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.65rem;
-        border-radius: 10px;
-        text-align: center;
-        min-width: 60px;
-      }
-
-      .menu-icon { font-size: 1.3rem; }
-      .menu-text { font-size: 0.6rem; white-space: nowrap; }
-
-      .main-content {
-        margin-left: 0;
-        padding: 1rem;
-        padding-bottom: 90px;
-      }
-
-      /* Mobile top logo bar */
+      .sidebar-menu a { flex-direction: column; gap: 4px; padding: 0.5rem 0.75rem; font-size: 0.6rem; border-radius: 10px; text-align: center; min-width: 60px; }
+      
+      .main-content { margin-left: 0; padding: 1rem; padding-bottom: 85px; }
+      
       .mobile-top-bar {
         display: flex;
         justify-content: space-between;
@@ -328,15 +338,11 @@
         z-index: 100;
         margin: -1rem -1rem 1rem -1rem;
       }
-
-      .mobile-top-bar img { height: 32px; cursor: pointer; }
-
+      .mobile-top-bar img { height: 28px; cursor: pointer; }
+      
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-      .two-columns { grid-template-columns: 1fr; }
-      .stat-card .stat-value { font-size: 1.2rem; }
+      .actions-grid { grid-template-columns: repeat(3, 1fr); }
     }
-
-    /* Hide mobile top bar on desktop */
     .mobile-top-bar { display: none; }
   </style>
 </head>
@@ -349,52 +355,31 @@
       <img src="images/logo.png.jpg" alt="Stonebridge Trust" onclick="window.location.href='index.html'">
     </div>
     <ul class="sidebar-menu">
-      <li class="menu-label">MAIN MENU</li>
-      <li class="active">
-        <a href="dashboard.html"><span class="menu-icon">📊</span><span class="menu-text">Dashboard</span></a>
-      </li>
-      <li>
-        <a href="#"><span class="menu-icon">📋</span><span class="menu-text">Transactions</span></a>
-      </li>
-      <li>
-        <a href="#"><span class="menu-icon">💳</span><span class="menu-text">Cards</span></a>
-      </li>
+      <li class="menu-label">MAIN</li>
+      <li class="active"><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="#">Transactions</a></li>
+      <li><a href="#">Cards</a></li>
       <div class="menu-divider"></div>
       <li class="menu-label">TRANSFERS</li>
-      <li>
-        <a href="#" onclick="openTransferModalFromSidebar('local')"><span class="menu-icon">🏦</span><span class="menu-text">Local</span></a>
-      </li>
-      <li>
-        <a href="#" onclick="openTransferModalFromSidebar('international')"><span class="menu-icon">🌍</span><span class="menu-text">International</span></a>
-      </li>
-      <li>
-        <a href="#" onclick="openModal('deposit')"><span class="menu-icon">💰</span><span class="menu-text">Deposit</span></a>
-      </li>
-      <li>
-        <a href="#"><span class="menu-icon">🔄</span><span class="menu-text">Swap</span></a>
-      </li>
+      <li><a href="#" onclick="openTransferModal('local')">Local Transfer</a></li>
+      <li><a href="#" onclick="openTransferModal('international')">International Wire</a></li>
+      <li><a href="#" onclick="openModal('deposit')">Deposit</a></li>
       <div class="menu-divider"></div>
       <li class="menu-label">SERVICES</li>
-      <li>
-        <a href="loans.html"><span class="menu-icon">📑</span><span class="menu-text">Loans</span></a>
-      </li>
-      <li>
-        <a href="housing.html"><span class="menu-icon">🏠</span><span class="menu-text">Housing</span></a>
-      </li>
+      <li><a href="loans.html">Loans</a></li>
+      <li><a href="housing.html">Housing</a></li>
+      <li><a href="#">Bank Details</a></li>
       <div class="menu-divider"></div>
-      <li>
-        <a href="#" onclick="logout()"><span class="menu-icon">🚪</span><span class="menu-text">Logout</span></a>
-      </li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
   </div>
 
   <!-- Main Content -->
   <div class="main-content">
-
-    <!-- Mobile Top Bar (visible only on mobile) -->
+    <!-- Mobile Top Bar -->
     <div class="mobile-top-bar">
       <img src="images/logo.png.jpg" alt="Stonebridge Trust" onclick="window.location.href='index.html'">
-      <div class="user-avatar" id="userAvatarMobile">U</div>
+      <div class="user-avatar" id="userAvatarMobile" style="width: 32px; height: 32px; font-size: 0.75rem;">U</div>
     </div>
 
     <div class="top-header">
@@ -414,133 +399,63 @@
     <!-- Stats Grid -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">TRANSACTION LIMIT</div>
-        <div class="stat-value">$500,000.00</div>
-        <div class="stat-sub">Daily limit available</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">PENDING TRANSACTIONS</div>
-        <div class="stat-value" id="pendingAmount">$0.00</div>
-        <div class="stat-sub">Awaiting processing</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">TOTAL VOLUME</div>
-        <div class="stat-value" id="totalVolume">$0.00</div>
+        <div class="stat-label">AVAILABLE BALANCE</div>
+        <div class="stat-value" id="accountBalance">$0.00</div>
         <div class="stat-sub">All transactions</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">CURRENT BALANCE</div>
-        <div class="stat-value" id="accountBalance">$0.00</div>
-        <div class="stat-sub">Available balance</div>
+        <div class="stat-label">ACCOUNT NUMBER</div>
+        <div class="stat-value" id="accountNumberDisplay" style="font-size: 1rem; font-family: monospace;">--</div>
+        <div class="account-row">
+          <span class="copy-btn" onclick="copyAccountNumber()">Copy</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">INFLOW (30D)</div>
+        <div class="stat-value" id="inflow30d">$0.00</div>
+        <div class="stat-sub">Total received</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">OUTFLOW (30D)</div>
+        <div class="stat-value" id="outflow30d">$0.00</div>
+        <div class="stat-sub">Total sent</div>
       </div>
     </div>
 
-    <!-- Two Column Layout -->
-    <div class="two-columns">
-      <div class="card">
-        <div class="card-header">
-          <h3>Recent Transactions</h3>
-          <a href="#" onclick="showAllTransactions()">View all →</a>
-        </div>
-        <div id="transactionList">
-          <div style="text-align: center; padding: 2rem; color: #6B6B80;">Loading transactions...</div>
-        </div>
+    <!-- Recent Transactions -->
+    <div class="transactions-card">
+      <div class="card-header">
+        <h3>Recent Transactions</h3>
+        <a href="#" onclick="showAllTransactions()">View all →</a>
       </div>
-
-      <div>
-        <div class="card" style="margin-bottom: 1.5rem;">
-          <div class="card-header"><h3>Quick Actions</h3></div>
-          <div class="quick-actions">
-            <div class="action-btn" onclick="openTransferModalFromSidebar('local')">
-              <span class="action-icon">💸</span>
-              <span class="action-label">Transfer</span>
-            </div>
-            <div class="action-btn" onclick="openModal('deposit')">
-              <span class="action-icon">💰</span>
-              <span class="action-label">Deposit</span>
-            </div>
-            <div class="action-btn" onclick="openModal('withdraw')">
-              <span class="action-icon">🏧</span>
-              <span class="action-label">Withdraw</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header"><h3>Account Statistics</h3></div>
-          <div class="account-stat-item">
-            <span class="account-stat-label">Account Holder</span>
-            <span class="account-stat-value" id="accountName">--</span>
-          </div>
-          <div class="account-stat-item">
-            <span class="account-stat-label">Account Number</span>
-            <span class="account-stat-value" id="accountNumber">--</span>
-          </div>
-          <div class="account-stat-item">
-            <span class="account-stat-label">Account Type</span>
-            <span class="account-stat-value" id="accountType">--</span>
-          </div>
-          <div class="account-stat-item">
-            <span class="account-stat-label">Email</span>
-            <span class="account-stat-value" id="accountEmail">--</span>
-          </div>
-          <div class="account-stat-item">
-            <span class="account-stat-label">Status</span>
-            <span class="account-stat-value" style="color: #4CAF50;">✓ Verified & Secured</span>
-          </div>
-        </div>
+      <div id="transactionList">
+        <div style="text-align: center; padding: 2rem; color: #6B6B80;">Loading transactions...</div>
       </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="actions-card">
+      <div class="actions-title">Quick Actions</div>
+      <div class="actions-grid">
+        <div class="action-btn" onclick="openTransferModal('local')">Local Transfer</div>
+        <div class="action-btn" onclick="openTransferModal('international')">International</div>
+        <div class="action-btn" onclick="openModal('deposit')">Deposit</div>
+        <div class="action-btn" onclick="openModal('withdraw')">Withdraw</div>
+        <div class="action-btn" onclick="window.location.href='loans.html'">Loans</div>
+        <div class="action-btn" onclick="logout()">Logout</div>
+      </div>
+    </div>
+
+    <!-- Support Card -->
+    <div class="support-card">
+      <h4>Need Assistance?</h4>
+      <p>Your private relationship manager is available 24/7.</p>
+      <div class="support-btn" onclick="window.location.href='contact.html'">Contact Manager</div>
     </div>
 
     <footer>
       <p>&copy; 2025 Stonebridge Trust. All rights reserved. | Member FDIC | Equal Housing Lender</p>
     </footer>
-  </div>
-</div>
-
-<!-- Send Money Modal -->
-<div id="transferModal" class="modal">
-  <div class="modal-content">
-    <h3>Send Money</h3>
-    <p>Swift & Secure Money Transfer</p>
-    <div class="transfer-options">
-      <div class="transfer-option" onclick="selectTransferType('local')">
-        <span class="option-icon">🏦</span>
-        <div class="option-title">Local Transfer</div>
-        <div class="option-desc">Instant • 0% Fee</div>
-      </div>
-      <div class="transfer-option" onclick="selectTransferType('international')">
-        <span class="option-icon">🌍</span>
-        <div class="option-title">International Wire</div>
-        <div class="option-desc">Secure • 72hrs</div>
-      </div>
-    </div>
-    <div id="transferFormFields" style="display: none;">
-      <div class="input-group">
-        <label>Recipient Account Number</label>
-        <input type="text" id="recipientAccount" placeholder="Enter account number">
-      </div>
-      <div class="input-group">
-        <label>Amount (USD)</label>
-        <input type="number" id="transferAmount" placeholder="0.00" step="0.01">
-      </div>
-      <div class="input-group">
-        <label>Description (Optional)</label>
-        <input type="text" id="transferDesc" placeholder="Transfer reason">
-      </div>
-      <div class="transfer-type-group">
-        <label><input type="radio" name="modalTransferType" value="local" checked> Local Transfer (Free)</label>
-        <label><input type="radio" name="modalTransferType" value="international"> International ($25 fee)</label>
-      </div>
-      <div class="fee-info" id="modalFeeInfo">Local transfers are free.</div>
-      <div class="modal-buttons">
-        <button class="btn-submit" onclick="processTransferFromModal()">Send Money</button>
-        <button class="btn-cancel" onclick="closeTransferModal()">Cancel</button>
-      </div>
-    </div>
-    <div style="margin-top: 1rem; font-size: 0.7rem; color: #6B6B80; text-align: center;">
-      All transfers are protected by bank-grade encryption
-    </div>
   </div>
 </div>
 
@@ -563,26 +478,25 @@
   </div>
 </div>
 
-<!-- Transfer Progress Modal -->
-<div id="progressModal" class="modal">
-  <div class="modal-content" style="text-align: center;">
-    <h3>Processing Transfer...</h3>
-    <p>Please do not close this window</p>
-    <div class="progress-container">
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-      <div style="font-size: 0.9rem; margin-top: 0.5rem; color: #FF9800;">⏳ Transfer Pending</div>
+<!-- Transfer Modal -->
+<div id="transferModal" class="modal">
+  <div class="modal-content">
+    <h3 id="transferModalTitle">Local Transfer</h3>
+    <div class="input-group">
+      <label>Recipient Account Number</label>
+      <input type="text" id="recipientAccount" placeholder="Enter account number">
     </div>
-    <div class="transfer-details" id="progressDetails">
-      <div class="info-row"><span class="info-label">Amount:</span><span class="info-value" id="progressAmount">$0.00</span></div>
-      <div class="info-row"><span class="info-label">To:</span><span class="info-value" id="progressRecipient">--</span></div>
-      <div class="info-row"><span class="info-label">Account:</span><span class="info-value" id="progressAccount">--</span></div>
-      <div class="info-row"><span class="info-label">Status:</span><span class="info-value" style="color:#FF9800;">⏳ Pending</span></div>
+    <div class="input-group">
+      <label>Amount (USD)</label>
+      <input type="number" id="transferAmount" placeholder="0.00" step="0.01">
     </div>
-    <div style="font-size: 0.75rem; color: #6B6B80; margin-bottom: 1rem;">
-      Your transfer is pending. The amount has been deducted from your balance and will be processed shortly.
+    <div class="input-group">
+      <label>Description (Optional)</label>
+      <input type="text" id="transferDesc" placeholder="Transfer reason">
     </div>
     <div class="modal-buttons">
-      <button class="btn-submit" onclick="closeProgressModal()">Done</button>
+      <button class="btn-submit" onclick="processTransfer()">Send Money</button>
+      <button class="btn-cancel" onclick="closeTransferModal()">Cancel</button>
     </div>
   </div>
 </div>
@@ -592,7 +506,7 @@
 <script>
   let currentUser = null;
   let currentAction = '';
-  let currentTransferTypeFromModal = 'local';
+  let currentTransferType = 'local';
 
   function checkAuth() {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -614,7 +528,6 @@
         if (!currentUser.transactions) currentUser.transactions = [];
         localStorage.setItem('user', JSON.stringify(currentUser));
         updateUI();
-        calculateStats();
       } else { logout(); }
     } catch (error) {
       showMessage('Error loading data: ' + error.message);
@@ -624,15 +537,16 @@
   function updateUI() {
     document.getElementById('username').textContent = currentUser.name || 'User';
     document.getElementById('userEmail').textContent = currentUser.email || '--';
-    document.getElementById('accountName').textContent = currentUser.name || '--';
-    document.getElementById('accountNumber').textContent = currentUser.account_number || '--';
-    document.getElementById('accountType').textContent = currentUser.account_type || '--';
-    document.getElementById('accountEmail').textContent = currentUser.email || '--';
     document.getElementById('accountBalance').textContent = '$' + parseFloat(currentUser.balance).toFixed(2);
+    document.getElementById('accountNumberDisplay').textContent = currentUser.account_number || '--';
+    
     const avatar = (currentUser.name || 'U').charAt(0).toUpperCase();
     document.getElementById('userAvatar').textContent = avatar;
-    document.getElementById('userAvatarMobile').textContent = avatar;
+    const mobileAvatar = document.getElementById('userAvatarMobile');
+    if (mobileAvatar) mobileAvatar.textContent = avatar;
+    
     renderTransactions();
+    calculateFlows();
   }
 
   function renderTransactions() {
@@ -643,53 +557,60 @@
     }
 
     let html = '';
-    const recentTx = [...currentUser.transactions].reverse().slice(0, 5);
+    const recentTx = [...currentUser.transactions].slice(0, 5);
 
     recentTx.forEach(tx => {
       const isPositive = tx.type === 'deposit' || tx.type === 'transfer_in';
-      const isPending = tx.status === 'pending';
-      const amountClass = isPending ? 'pending' : (isPositive ? 'positive' : 'negative');
+      const amountClass = isPositive ? 'positive' : 'negative';
       const amountSymbol = isPositive ? '+' : '-';
-      const icon = tx.type === 'deposit' ? '💰' : (tx.type === 'withdraw' ? '💳' : '🔄');
-      const name = (tx.description || (tx.type === 'deposit' ? 'Deposit' : tx.type === 'withdraw' ? 'Withdrawal' : 'Transfer')).substring(0, 25);
-      const statusBadge = isPending
-        ? '<span class="status-badge pending">Pending</span>'
-        : '<span class="status-badge completed">Done</span>';
+      const name = (tx.description || (tx.type === 'deposit' ? 'Deposit' : tx.type === 'withdraw' ? 'Withdrawal' : 'Transfer')).substring(0, 30);
 
       html += `
         <div class="transaction-item">
-          <div class="transaction-info">
-            <div class="transaction-icon">${icon}</div>
-            <div class="transaction-details">
-              <div class="transaction-name">${name}${statusBadge}</div>
-              <div class="transaction-date">${tx.date || new Date().toISOString().split('T')[0]}</div>
-            </div>
+          <div class="transaction-left">
+            <div class="transaction-name">${name}</div>
+            <div class="transaction-date">${tx.date || new Date().toISOString().split('T')[0]}</div>
           </div>
-          <div class="transaction-amount ${amountClass}">
-            ${amountSymbol}$${Math.abs(tx.amount).toFixed(2)}
+          <div class="transaction-right">
+            <div class="transaction-amount ${amountClass}">${amountSymbol}$${Math.abs(tx.amount).toFixed(2)}</div>
+            <span class="status-badge completed">DONE</span>
           </div>
         </div>
       `;
     });
-
     container.innerHTML = html;
   }
 
-  function calculateStats() {
-    let totalVolume = 0;
-    let pendingTotal = 0;
+  function calculateFlows() {
+    let inflow = 0;
+    let outflow = 0;
+    const today = new Date();
+    const thirtyDaysAgo = new Date(today.setDate(today.getDate() - 30));
+
     if (currentUser.transactions) {
       currentUser.transactions.forEach(tx => {
-        totalVolume += Math.abs(tx.amount);
-        if (tx.status === 'pending') pendingTotal += Math.abs(tx.amount);
+        const txDate = new Date(tx.date);
+        if (txDate >= thirtyDaysAgo) {
+          if (tx.type === 'deposit' || tx.type === 'transfer_in') {
+            inflow += tx.amount;
+          } else if (tx.type === 'withdraw' || tx.type === 'transfer_out') {
+            outflow += tx.amount;
+          }
+        }
       });
     }
-    document.getElementById('totalVolume').textContent = '$' + totalVolume.toFixed(2);
-    document.getElementById('pendingAmount').textContent = '$' + pendingTotal.toFixed(2);
+    document.getElementById('inflow30d').textContent = '$' + inflow.toFixed(2);
+    document.getElementById('outflow30d').textContent = '$' + outflow.toFixed(2);
+  }
+
+  function copyAccountNumber() {
+    const accountNum = document.getElementById('accountNumberDisplay').textContent;
+    navigator.clipboard.writeText(accountNum);
+    showMessage('Account number copied!');
   }
 
   function showAllTransactions() {
-    document.querySelector('.transaction-section')?.scrollIntoView({ behavior: 'smooth' });
+    showMessage('View all transactions feature coming soon');
   }
 
   function openModal(action) {
@@ -698,8 +619,8 @@
     const title = document.getElementById('modalTitle');
     document.getElementById('modalAmount').value = '';
     document.getElementById('modalDescription').value = '';
-    if (action === 'deposit') title.textContent = '💰 Deposit Money';
-    else if (action === 'withdraw') title.textContent = '💸 Withdraw Money';
+    if (action === 'deposit') title.textContent = 'Deposit Money';
+    else title.textContent = 'Withdraw Money';
     modal.style.display = 'flex';
   }
 
@@ -710,10 +631,8 @@
     const description = document.getElementById('modalDescription').value;
     if (isNaN(amount) || amount <= 0) { showMessage('Please enter a valid amount'); return; }
 
-    let endpoint = '';
-    let body = { email: currentUser.email, amount, description };
-    if (currentAction === 'deposit') endpoint = '/api/deposit';
-    else if (currentAction === 'withdraw') endpoint = '/api/withdraw';
+    const endpoint = currentAction === 'deposit' ? '/api/deposit' : '/api/withdraw';
+    const body = { email: currentUser.email, amount, description };
 
     closeModal();
     showMessage('Processing...');
@@ -730,74 +649,31 @@
     } catch (error) { showMessage('Error: ' + error.message); }
   }
 
-  function openTransferModalFromSidebar(type) {
-    currentTransferTypeFromModal = type;
+  function openTransferModal(type) {
+    currentTransferType = type;
     const modal = document.getElementById('transferModal');
+    const title = document.getElementById('transferModalTitle');
+    title.textContent = type === 'local' ? 'Local Transfer' : 'International Wire Transfer';
     document.getElementById('recipientAccount').value = '';
     document.getElementById('transferAmount').value = '';
     document.getElementById('transferDesc').value = '';
-
-    const feeInfo = document.getElementById('modalFeeInfo');
-    const localRadio = document.querySelector('input[name="modalTransferType"][value="local"]');
-    const intlRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
-
-    if (type === 'local') { localRadio.checked = true; feeInfo.textContent = 'Local transfers are free.'; }
-    else { intlRadio.checked = true; feeInfo.textContent = 'International transfers have a $25 fee.'; }
-
-    document.querySelectorAll('input[name="modalTransferType"]').forEach(radio => {
-      radio.onclick = () => {
-        feeInfo.textContent = document.querySelector('input[name="modalTransferType"]:checked').value === 'international'
-          ? 'International transfers have a $25 fee.' : 'Local transfers are free.';
-      };
-    });
-
-    document.getElementById('transferFormFields').style.display = 'block';
     modal.style.display = 'flex';
   }
 
-  function selectTransferType(type) {
-    currentTransferTypeFromModal = type;
-    const feeInfo = document.getElementById('modalFeeInfo');
-    const localRadio = document.querySelector('input[name="modalTransferType"][value="local"]');
-    const intlRadio = document.querySelector('input[name="modalTransferType"][value="international"]');
-    if (type === 'local') { localRadio.checked = true; feeInfo.textContent = 'Local transfers are free.'; }
-    else { intlRadio.checked = true; feeInfo.textContent = 'International transfers have a $25 fee.'; }
-    document.getElementById('transferFormFields').style.display = 'block';
-  }
+  function closeTransferModal() { document.getElementById('transferModal').style.display = 'none'; }
 
-  function closeTransferModal() {
-    document.getElementById('transferModal').style.display = 'none';
-    document.getElementById('transferFormFields').style.display = 'none';
-  }
-
-  async function processTransferFromModal() {
+  async function processTransfer() {
     const recipientAccount = document.getElementById('recipientAccount').value.trim();
     const amount = parseFloat(document.getElementById('transferAmount').value);
     const description = document.getElementById('transferDesc').value;
-    const transferType = document.querySelector('input[name="modalTransferType"]:checked').value;
 
     if (!recipientAccount) { showMessage('Please enter recipient account number'); return; }
     if (isNaN(amount) || amount <= 0) { showMessage('Please enter a valid amount'); return; }
     if (amount > parseFloat(currentUser.balance)) { showMessage('Insufficient balance'); return; }
 
     closeTransferModal();
+    showMessage('Processing transfer...');
 
-    // Show progress modal
-    document.getElementById('progressAmount').textContent = '$' + amount.toFixed(2);
-    document.getElementById('progressAccount').textContent = recipientAccount;
-    document.getElementById('progressRecipient').textContent = 'Processing...';
-    document.getElementById('progressModal').style.display = 'flex';
-
-    // Look up recipient name
-    try {
-      const recipientRes = await fetch(`/api/user-by-account/${recipientAccount}`);
-      const recipientData = await recipientRes.json();
-      document.getElementById('progressRecipient').textContent = recipientData.success ? recipientData.user.name : 'External Account';
-    } catch (e) {
-      document.getElementById('progressRecipient').textContent = 'External Account';
-    }
-
-    // Process transfer — deduct balance and add as PENDING
     try {
       const response = await fetch('/api/transfer', {
         method: 'POST',
@@ -806,33 +682,15 @@
           email: currentUser.email,
           amount,
           recipientAccountNumber: recipientAccount,
-          description: description || `Transfer to ${recipientAccount}`,
-          transferType,
-          status: 'pending'   // <-- tells backend to mark as pending
+          description,
+          transferType: currentTransferType
         })
       });
-
       const data = await response.json();
-
-      setTimeout(async () => {
-        if (data.success) {
-          showMessage('Transfer is pending — amount deducted from balance');
-          await loadUserData();
-        } else {
-          showMessage(data.message || 'Transfer failed');
-          closeProgressModal();
-        }
-      }, 2000);
-
-    } catch (error) {
-      setTimeout(() => {
-        showMessage('Error: ' + error.message);
-        closeProgressModal();
-      }, 2000);
-    }
+      if (data.success) { showMessage(data.message); await loadUserData(); }
+      else showMessage(data.message || 'Transfer failed');
+    } catch (error) { showMessage('Error: ' + error.message); }
   }
-
-  function closeProgressModal() { document.getElementById('progressModal').style.display = 'none'; }
 
   function showMessage(msg) {
     const toast = document.getElementById('messageToast');

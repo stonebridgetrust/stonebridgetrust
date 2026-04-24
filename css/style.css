@@ -1,30 +1,25 @@
 /* ========================================
-   BASIC RESET
+   STONEBRIDGE TRUST - PREMIUM BANK THEME
    ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ========================================
-   GLOBAL STYLES
-   ======================================== */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #0A0A0F;
+  background: #0A0E17;
   color: #FFFFFF;
 }
 
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
 /* ========================================
-   NAVBAR - Premium Dark Theme (No HTML changes needed)
+   NAVBAR - PROFESSIONAL BANK STYLE
    ======================================== */
 nav {
-  background: rgba(10, 10, 15, 0.95);
-  backdrop-filter: blur(12px);
+  background: #0D111C;
   padding: 1rem 3rem;
   display: flex;
   justify-content: space-between;
@@ -32,89 +27,73 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-/* Style for text logo (pages that still use text) */
-nav a[href="index.html"] {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+/* Logo */
+nav a:first-child {
+  font-size: 1.3rem;
   font-weight: 700;
   color: #FFFFFF;
   text-decoration: none;
-  letter-spacing: -0.02em;
 }
 
-nav a[href="index.html"] span {
-  color: #C6A43F;
+nav a:first-child span {
+  color: #D4AF37;
 }
 
-/* Navigation Links */
+/* Navigation links */
 nav a {
-  color: #A0A0B0;
+  color: #A0A5B5;
   text-decoration: none;
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all 0.2s ease;
 }
 
 nav a:hover {
-  background: rgba(255,255,255,0.05);
-  color: #C6A43F;
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.08);
 }
 
-/* Style for Register and Login buttons */
+/* Register & Login buttons */
 nav a[href="register.html"],
 nav a[href="login.html"] {
-  background: #C6A43F;
-  color: #0A0A0F;
+  background: #D4AF37;
+  color: #0A0E17;
   padding: 0.5rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
 }
 
 nav a[href="register.html"]:hover,
 nav a[href="login.html"]:hover {
-  background: #a8882c;
-  color: #0A0A0F;
+  background: #c4a02e;
 }
 
-/* Logout button style */
-nav a[href="#"]:not([href="index.html"]):not([href="about.html"]):not([href="banking.html"]):not([href="housing.html"]):not([href="loans.html"]):not([href="contact.html"]):not([href="register.html"]):not([href="login.html"]) {
-  background: rgba(198, 164, 63, 0.15);
-  color: #C6A43F;
-}
-
-nav a[href="#"]:hover {
-  background: rgba(198, 164, 63, 0.25);
-  color: #C6A43F;
+/* Logout button */
+nav a[onclick*="logout"] {
+  background: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
 }
 
 /* ========================================
-   MOBILE RESPONSIVE (No HTML changes needed)
+   MOBILE NAVBAR
    ======================================== */
 @media (max-width: 768px) {
   nav {
     padding: 0.75rem 1rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    text-align: center;
   }
   
   nav a {
     padding: 0.4rem 0.75rem;
     font-size: 0.75rem;
-  }
-  
-  nav a[href="index.html"] {
-    font-size: 1.2rem;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0.25rem;
   }
 }
 
@@ -130,26 +109,25 @@ nav a[href="#"]:hover {
 }
 
 .form-box {
-  background: #14141E;
-  border-radius: 24px;
+  background: #11151F;
+  border-radius: 16px;
   padding: 2rem;
   max-width: 450px;
   width: 100%;
   border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
 .form-box h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
   color: #FFFFFF;
 }
 
 .form-box p {
-  color: #A0A0B0;
+  color: #A0A5B5;
   margin-bottom: 1.5rem;
+  font-size: 0.85rem;
 }
 
 .form-group {
@@ -159,46 +137,46 @@ nav a[href="#"]:hover {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #D4AF37;
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 0.85rem;
-  background: #0A0A0F;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
+  padding: 0.75rem;
+  background: #0A0E17;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
   font-size: 0.9rem;
   color: #FFFFFF;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #C6A43F;
+  border-color: #D4AF37;
 }
 
 .submit-btn {
   width: 100%;
-  background: #C6A43F;
-  color: #0A0A0F;
-  padding: 0.85rem;
+  background: #D4AF37;
+  color: #0A0E17;
+  padding: 0.75rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
   margin-top: 0.5rem;
 }
 
 .submit-btn:hover {
-  background: #a8882c;
-  transform: translateY(-2px);
+  background: #c4a02e;
+  transform: translateY(-1px);
 }
 
 .submit-btn:disabled {
@@ -210,12 +188,12 @@ nav a[href="#"]:hover {
 .form-link {
   text-align: center;
   margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: #A0A0B0;
+  font-size: 0.8rem;
+  color: #A0A5B5;
 }
 
 .form-link a {
-  color: #C6A43F;
+  color: #D4AF37;
   text-decoration: none;
 }
 
@@ -224,16 +202,16 @@ nav a[href="#"]:hover {
 }
 
 /* ========================================
-   ERROR & SUCCESS MESSAGES
+   MESSAGES
    ======================================== */
 .error-msg {
   color: #f44336;
   background: rgba(244, 67, 54, 0.1);
   border: 1px solid rgba(244, 67, 54, 0.3);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 16px;
-  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
   display: none;
 }
 
@@ -241,26 +219,26 @@ nav a[href="#"]:hover {
   color: #4CAF50;
   background: rgba(76, 175, 80, 0.1);
   border: 1px solid rgba(76, 175, 80, 0.3);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 16px;
-  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
   display: none;
 }
 
 /* ========================================
-   SPINNER (Loading Animation)
+   SPINNER
    ======================================== */
 .spinner {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border: 2px solid rgba(0,0,0,0.2);
-  border-top-color: #0A0A0F;
+  border-top-color: #0A0E17;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
+  margin-right: 6px;
   vertical-align: middle;
-  margin-right: 8px;
 }
 
 @keyframes spin {
@@ -268,12 +246,12 @@ nav a[href="#"]:hover {
 }
 
 /* ========================================
-   BUTTONS (General)
+   BUTTON ACTIONS
    ======================================== */
 .btn-action {
   padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 40px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -287,7 +265,6 @@ nav a[href="#"]:hover {
 
 .btn-deposit:hover {
   background: #1b5e20;
-  transform: translateY(-2px);
 }
 
 .btn-withdraw {
@@ -297,7 +274,6 @@ nav a[href="#"]:hover {
 
 .btn-withdraw:hover {
   background: #b71c1c;
-  transform: translateY(-2px);
 }
 
 .btn-transfer {
@@ -307,7 +283,6 @@ nav a[href="#"]:hover {
 
 .btn-transfer:hover {
   background: #0d47a1;
-  transform: translateY(-2px);
 }
 
 /* ========================================
@@ -327,8 +302,8 @@ nav a[href="#"]:hover {
 }
 
 .modal-content {
-  background: #14141E;
-  border-radius: 24px;
+  background: #11151F;
+  border-radius: 16px;
   padding: 2rem;
   max-width: 450px;
   width: 90%;
@@ -336,14 +311,15 @@ nav a[href="#"]:hover {
 }
 
 .modal-content h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: #FFFFFF;
+  font-weight: 600;
 }
 
 .modal-content p {
-  color: #A0A0B0;
-  font-size: 0.85rem;
+  color: #A0A5B5;
+  font-size: 0.8rem;
   margin-bottom: 1.5rem;
 }
 
@@ -355,21 +331,21 @@ nav a[href="#"]:hover {
 
 .modal-buttons button {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.7rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .btn-submit {
-  background: #C6A43F;
-  color: #0A0A0F;
+  background: #D4AF37;
+  color: #0A0E17;
 }
 
 .btn-submit:hover {
-  background: #a8882c;
+  background: #c4a02e;
 }
 
 .btn-cancel {
@@ -386,23 +362,19 @@ nav a[href="#"]:hover {
    FOOTER
    ======================================== */
 footer {
-  background: #111118;
-  color: #6B6B80;
+  background: #0D111C;
+  color: #6B7280;
   text-align: center;
   padding: 1.5rem;
   margin-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  font-size: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.7rem;
 }
 
 /* ========================================
-   RESPONSIVE ADJUSTMENTS
+   RESPONSIVE
    ======================================== */
 @media (max-width: 900px) {
-  nav {
-    padding: 0.75rem 1rem;
-  }
-  
   .form-page {
     padding: 1rem;
   }
@@ -414,7 +386,7 @@ footer {
 
 @media (max-width: 600px) {
   .form-box h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   
   .stats-grid {
